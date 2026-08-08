@@ -1,0 +1,28 @@
+/* CSS for Index view */
+.index-hero {
+    background-color: rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 16px;
+    padding: 3rem 2rem;
+    margin-top: 4rem;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+}
+
+    .index-hero h1,
+    .index-hero h3 {
+        color: #ffffff;
+    }
+
+    .index-hero p {
+        color: #d8e6f5;
+    }
+
+        .index-hero p a {
+            color: #85B7EB;
+        }
+
+            .index-hero p a:hover {
+                color: #ffffff;
+            }

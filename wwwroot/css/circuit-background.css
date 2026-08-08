@@ -1,0 +1,222 @@
+﻿/* ============================================================
+   Fondo animado de placa de circuito.
+   No toca site.css: se carga aparte y solo afecta a
+   .circuit-bg y sus hijos.
+   ============================================================ */
+
+:root {
+    --bg-deep: #050d1f;
+    --bg-mid: #0a1830;
+    --trace-dim: #123a66;
+    --trace-mid: #1a4d82;
+    --glow: #6fe3ff;
+    --glow-soft: #a6f0ff;
+    --pad-ring: #2a6296;
+    --chip-body: #050b16;
+    --chip-edge: #1a4d82;
+    --pin-metal: #8fb8d8;
+    --res-body: #0c1c30;
+    --res-band: #cfefff;
+    --mount: #345f86;
+}
+
+/* Deja pasar el fondo detrás del contenido normal de la página */
+html, body {
+    background-color: transparent;
+}
+
+.circuit-bg {
+    position: fixed;
+    inset: 0;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    z-index: -1; /* siempre detrás del header/main/footer */
+    pointer-events: none; /* no bloquea clicks ni scroll */
+    background: radial-gradient(ellipse at 18% 12%, rgba(20,70,120,0.32), transparent 55%), radial-gradient(ellipse at 82% 88%, rgba(20,70,120,0.28), transparent 55%), linear-gradient(160deg, var(--bg-mid) 0%, var(--bg-deep) 65%);
+}
+
+    .circuit-bg::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background-image: linear-gradient(rgba(18,58,102,0.35) 1px, transparent 1px), linear-gradient(90deg, rgba(18,58,102,0.35) 1px, transparent 1px);
+        background-size: 40px 40px, 40px 40px;
+        opacity: 0.45;
+    }
+
+    .circuit-bg::after {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(ellipse at center, transparent 45%, rgba(0,0,0,0.55) 100%);
+    }
+
+#board {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+}
+
+    #board svg {
+        width: 100%;
+        height: 100%;
+        display: block;
+    }
+
+.trace-line {
+    fill: none;
+    stroke: var(--trace-mid);
+    stroke-width: 2;
+    stroke-linecap: round;
+    opacity: 0.85;
+}
+
+.trace-thin {
+    fill: none;
+    stroke: var(--trace-dim);
+    stroke-width: 1.2;
+    stroke-linecap: round;
+    opacity: 0.7;
+}
+
+.via-ring {
+    fill: none;
+    stroke: var(--pad-ring);
+    stroke-width: 1.8;
+}
+
+.via-hole {
+    fill: var(--bg-deep);
+}
+
+.pad-small {
+    fill: var(--pad-ring);
+}
+
+.chip-body {
+    fill: var(--chip-body);
+    stroke: var(--chip-edge);
+    stroke-width: 1.5;
+}
+
+.chip-pin {
+    stroke: var(--pin-metal);
+    stroke-width: 1.6;
+    stroke-linecap: round;
+}
+
+.chip-dot {
+    fill: var(--glow-soft);
+    opacity: 0.9;
+}
+
+.chip-detail {
+    stroke: var(--chip-edge);
+    stroke-width: 1;
+    opacity: 0.55;
+}
+
+.res-body {
+    fill: var(--res-body);
+    stroke: var(--chip-edge);
+    stroke-width: 1;
+}
+
+.res-band {
+    stroke: var(--res-band);
+    stroke-width: 1.6;
+    opacity: 0.8;
+}
+
+.res-lead {
+    stroke: var(--pin-metal);
+    stroke-width: 1.4;
+}
+
+.conn-body {
+    fill: var(--chip-body);
+    stroke: var(--chip-edge);
+    stroke-width: 1.5;
+}
+
+.conn-pin {
+    stroke: var(--pin-metal);
+    stroke-width: 1.8;
+    stroke-linecap: round;
+}
+
+.mount-hole {
+    fill: var(--bg-deep);
+    stroke: var(--mount);
+    stroke-width: 3;
+    opacity: 0.8;
+}
+
+.pulse {
+    fill: none;
+    stroke: var(--glow-soft);
+    stroke-width: 2.4;
+    stroke-linecap: round;
+    stroke-dasharray: 8 200;
+    stroke-dashoffset: 208;
+    filter: drop-shadow(0 0 4px var(--glow)) drop-shadow(0 0 10px var(--glow));
+    opacity: 0;
+    animation-name: recorrer;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+}
+
+@keyframes recorrer {
+    0% {
+        stroke-dashoffset: 208;
+        opacity: 0;
+    }
+
+    4% {
+        opacity: 1;
+    }
+
+    46% {
+        opacity: 1;
+    }
+
+    50% {
+        stroke-dashoffset: 0;
+        opacity: 0;
+    }
+
+    100% {
+        stroke-dashoffset: 0;
+        opacity: 0;
+    }
+}
+
+.ambient-glow {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 30% 40%, rgba(111,227,255,0.10), transparent 45%);
+    animation: respirar 6s ease-in-out infinite;
+}
+
+@keyframes respirar {
+    0%,100% {
+        opacity: 0.4;
+    }
+
+    50% {
+        opacity: 1;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .pulse {
+        animation: none;
+        opacity: 0;
+    }
+
+    .ambient-glow {
+        animation: none;
+    }
+}

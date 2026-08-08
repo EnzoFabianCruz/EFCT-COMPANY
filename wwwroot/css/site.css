@@ -1,0 +1,185 @@
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+
+.form-floating > .form-control-plaintext::placeholder, .form-floating > .form-control::placeholder {
+  color: var(--bs-secondary-color);
+  text-align: end;
+}
+
+.form-floating > .form-control-plaintext:focus::placeholder, .form-floating > .form-control:focus::placeholder {
+  text-align: start;
+}
+:root {
+    --azul-oscuro: #042C53;
+    --azul-marca: #1b6ec2;
+    --celeste-acento: #85B7EB;
+}
+
+body {
+    color: #212529;
+}
+
+.navbar {
+    background-color: var(--azul-oscuro) !important;
+}
+
+.navbar-brand, .nav-link {
+    color: white !important;
+}
+h1.display-4 {
+    color: #ffffff;
+    margin-bottom: 2rem;
+}
+html, body {
+    height: 100%;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+    /* El contenedor que envuelve el <main> debe crecer para empujar el footer abajo */
+    body > div.container {
+        flex: 1 0 auto;
+    }
+
+footer.footer {
+    flex-shrink: 0;
+}
+.servicios-header {
+    margin-bottom: 2.5rem;
+}
+
+.servicios-subtitle {
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 1.1rem;
+    max-width: 600px;
+    margin: 0.5rem auto 0;
+}
+
+.servicios-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: 1.5rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+.servicio-card {
+    text-align: left;
+    padding: 2rem;
+    position: relative;
+    overflow: hidden;
+    transition: transform 0.35s ease, box-shadow 0.35s ease, border-color 0.35s ease;
+}
+
+    /* Efecto "circuito encendiéndose" al pasar el mouse */
+    .servicio-card::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 2px;
+        background: linear-gradient(90deg, transparent, #4dd0e1, transparent);
+        transition: left 0.6s ease;
+    }
+
+    .servicio-card:hover::before {
+        left: 100%;
+    }
+
+    .servicio-card:hover {
+        transform: translateY(-6px);
+        box-shadow: 0 12px 40px rgba(77, 208, 225, 0.15);
+        border-color: rgba(77, 208, 225, 0.4);
+    }
+
+.servicio-icon {
+    width: 48px;
+    height: 48px;
+    color: #4dd0e1;
+    margin-bottom: 1rem;
+}
+
+    .servicio-icon svg {
+        width: 100%;
+        height: 100%;
+    }
+
+.servicio-card h2 {
+    color: #ffffff;
+    font-size: 1.4rem;
+    margin-bottom: 0.75rem;
+}
+
+.servicio-card h3 {
+    color: #4dd0e1;
+    font-size: 1.1rem;
+}
+
+.servicio-card p,
+.servicio-card li {
+    color: rgba(255, 255, 255, 0.75);
+}
+
+.nivel-box {
+    background: rgba(255, 255, 255, 0.04);
+    border-left: 3px solid #4dd0e1;
+    padding: 1rem;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+}
+
+/* Lista con check estilo circuito */
+.check-list {
+    list-style: none;
+    padding-left: 0;
+}
+
+    .check-list li {
+        position: relative;
+        padding-left: 1.75rem;
+        margin-bottom: 0.5rem;
+    }
+
+        .check-list li::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 0.4rem;
+            width: 10px;
+            height: 10px;
+            border: 2px solid #4dd0e1;
+            border-radius: 50%;
+            background: rgba(77, 208, 225, 0.15);
+        }
+
+/* Animación de aparición al hacer scroll */
+.fade-in-scroll {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+    .fade-in-scroll.visible {
+        opacity: 1;
+        transform: translateY(0);
+    }

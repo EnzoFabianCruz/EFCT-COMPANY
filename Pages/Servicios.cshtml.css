@@ -1,0 +1,70 @@
+/* CSS for Servicios view */
+.servicio-card {
+    background-color: rgba(255, 255, 255, 0.12);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 16px;
+    padding: 1.5rem 1.5rem;
+    margin-bottom: 1.5rem;
+    text-align: left;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+}
+
+.servicio-card h2 {
+    font-size: 1.25rem; /* antes 1.4rem */
+}
+
+.servicio-icon {
+    width: 40px; /* antes 48px */
+    height: 40px;
+}
+
+
+.servicio-card h3 {
+    color: #ffffff;
+}
+
+.servicio-card p,
+.servicio-card li,
+.servicio-card sub,
+.servicio-card small {
+    color: #d8e6f5;
+}
+.servicios-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-areas:
+        "desarrollo desarrollo"
+        "soporte automatizacion"
+        "hardware hardware";
+    gap: 1.5rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+.servicio-card:nth-child(1) .nivel-wrapper {
+    display: flex;
+    gap: 1rem;
+}
+
+.servicio-card:nth-child(1) .nivel-box {
+    flex: 1;
+}
+
+
+.servicio-card:nth-child(1) {
+    grid-area: desarrollo;
+}
+
+.servicio-card:nth-child(2) {
+    grid-area: soporte;
+}
+
+.servicio-card:nth-child(3) {
+    grid-area: automatizacion;
+}
+
+.servicio-card:nth-child(4) {
+    grid-area: hardware;
+}

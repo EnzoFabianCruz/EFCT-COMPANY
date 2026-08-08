@@ -1,0 +1,68 @@
+/* CSS for Privacy view */
+.privacy-container {
+    color: rgba(255, 255, 255, 0.85);
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 1.5rem 0;
+}
+
+    .privacy-container h1 {
+        color: #ffffff;
+        margin-bottom: 1.5rem;
+        font-size: 1.75rem;
+    }
+
+    .privacy-container p {
+        line-height: 1.7;
+        margin-bottom: 1rem;
+        color: rgba(255, 255, 255, 0.75);
+    }
+
+    .privacy-container strong {
+        color: #ffffff;
+    }
+
+    .privacy-container .privacy-updated {
+        font-size: 0.85rem;
+        color: rgba(255, 255, 255, 0.5);
+        margin-top: 2rem;
+        font-style: italic;
+    }
+.glass-card {
+    background: rgba(255, 255, 255, 0.06);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 16px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    padding: 2rem;
+}
+
+.privacy-container {
+    color: rgba(255, 255, 255, 0.85);
+    max-width: 800px;
+    margin: 2rem auto;
+}
+
+    .privacy-container h1 {
+        color: #ffffff;
+        margin-bottom: 1.5rem;
+        font-size: 1.75rem;
+    }
+
+    .privacy-container p {
+        line-height: 1.7;
+        margin-bottom: 1rem;
+        color: rgba(255, 255, 255, 0.75);
+    }
+
+    .privacy-container strong {
+        color: #ffffff;
+    }
+
+    .privacy-container .privacy-updated {
+        font-size: 0.85rem;
+        color: rgba(255, 255, 255, 0.5);
+        margin-top: 2rem;
+        font-style: italic;
+    }
