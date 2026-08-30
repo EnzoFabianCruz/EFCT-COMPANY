@@ -3,38 +3,396 @@
 @{
 }
 <div class="text-center">
-    <h1 class="display-4">Proyetos realizados</h1>
-        <div class="proyectos-card">
+    <h1 class="display-4">Proyectos realizados</h1>
+    <p class="proyectos-subtitle">Haz clic en cualquier proyecto para explorar una demo interactiva</p>
+
+    <div class="proyectos-grid">
+
+        <!-- Sistema de inspecciones en campo -->
+        <a href="/InspeccionesDemo" class="proyecto-mini-card">
+            <div class="mini-window">
+                <div class="mini-window-bar">
+                    <span></span><span></span><span></span>
+                </div>
+                <div class="mini-window-scale">
+                    <div class="mini-preview mini-inspecciones">
+                        <div class="mp-header">Inspecciones App</div>
+                        <div class="mp-login-box">
+                            <div class="mp-label">Usuario</div>
+                            <div class="mp-input"></div>
+                            <div class="mp-label">Contraseña</div>
+                            <div class="mp-input"></div>
+                            <div class="mp-btn">Ingresar</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <h2>Sistema de inspecciones en campo</h2>
-                <ul>
-                    <li>Problema: las inspecciones técnicas se registraban primero en papel o fotos, y después había que pasar todo manualmente a una computadora en oficina</li>
-                    <li>Solución: un sistema donde cada inspector registra la información directamente desde el lugar, en el momento, con su propio acceso</li>
-                    <li>Resultado: menos retrabajo, menos errores, información disponible al instante</li>
-                </ul>
+            <p>Registro de inspecciones técnicas desde el mismo lugar, sin papel ni retrabajo.</p>
+        </a>
+
+        <!-- EdificioApp -->
+        <a href="/EdificioAppDemo" class="proyecto-mini-card">
+            <div class="mini-window">
+                <div class="mini-window-bar">
+                    <span></span><span></span><span></span>
+                </div>
+                <div class="mini-window-scale">
+                    <div class="mini-preview mini-edificio">
+                        <div class="mp-sidebar-mini">
+                            <div class="mp-plaque">E</div>
+                            <div class="mp-nav-line"></div>
+                            <div class="mp-nav-line"></div>
+                            <div class="mp-nav-line"></div>
+                        </div>
+                        <div class="mp-content-mini">
+                            <div class="mp-cards-row">
+                                <div class="mp-card-mini"></div>
+                                <div class="mp-card-mini"></div>
+                                <div class="mp-card-mini"></div>
+                            </div>
+                            <div class="mp-table-mini"></div>
+                        </div>
+                    </div>
+                </div>
             </div>
-        <div class="proyectos-card">
-        <h2>Recuperación de sistema tras falla</h2>
-                <ul>
-                    <li>Problema: un cambio de disco sin respaldo adecuado dejó un servidor completamente fuera de servicio</li>
-                    <li>Solución: un sistema donde cada inspector registra la información directamente desde el lugar, en el momento, con su propio acceso</li>
-                    <li>Resultado: menos retrabajo, menos errores, información disponible al instante</li>
-                </ul>
+            <h2>EdificioApp</h2>
+            <p>Administración de un edificio: boletas, mantenimiento, servicios y juntas.</p>
+        </a>
+
+        <!-- Medibox -->
+        <a href="/MediboxDemo" class="proyecto-mini-card">
+            <div class="mini-window">
+                <div class="mini-window-bar">
+                    <span></span><span></span><span></span>
+                </div>
+                <div class="mini-window-scale">
+                    <div class="mini-preview mini-medibox">
+                        <div class="mp-sidebar-mini blue">
+                            <div class="mp-logo-mini">Medibox</div>
+                            <div class="mp-nav-line"></div>
+                            <div class="mp-nav-line"></div>
+                        </div>
+                        <div class="mp-content-mini">
+                            <div class="mp-table-mini wide"></div>
+                            <div class="mp-table-mini wide"></div>
+                        </div>
+                    </div>
+                </div>
             </div>
-        <div class="proyectos-card">
-        <h2>Notificaciones en tiempo real entre dispositivo</h2>s
-                <ul>
-                    <li>Problema: el cliente necesitaba ver ciertas notificaciones de un sistema en varios dispositivos a la vez, sin guardar información sensible en ningún lado</li>
-                    <li>Solución: una aplicación que reenvía las notificaciones en tiempo real, solo para visualizarlas, sin almacenar datos</li>
-                    <li>Resultado: visualización remota simple y segura, cumpliendo justo lo que el cliente necesitaba</li>
-                </ul>
+            <h2>Medibox</h2>
+            <p>Control de stock y pedidos para un cliente de distribución farmacéutica.</p>
+        </a>
+
+        <!-- Agenda SFT Move Center -->
+        <a href="/AgendaSftDemo" class="proyecto-mini-card">
+            <div class="mini-window">
+                <div class="mini-window-bar">
+                    <span></span><span></span><span></span>
+                </div>
+                <div class="mini-window-scale">
+                    <div class="mini-preview mini-agenda">
+                        <div class="mp-agenda-header">Agenda SFT</div>
+                        <div class="mp-agenda-table">
+                            <div class="mp-agenda-row">
+                                <div class="mp-cell head"></div>
+                                <div class="mp-cell head"></div>
+                                <div class="mp-cell head"></div>
+                                <div class="mp-cell head"></div>
+                            </div>
+                            <div class="mp-agenda-row">
+                                <div class="mp-cell"></div>
+                                <div class="mp-cell green"></div>
+                                <div class="mp-cell blue"></div>
+                                <div class="mp-cell green"></div>
+                            </div>
+                            <div class="mp-agenda-row">
+                                <div class="mp-cell"></div>
+                                <div class="mp-cell red"></div>
+                                <div class="mp-cell"></div>
+                                <div class="mp-cell purple"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-        <div class="proyectos-card">
-        <h2>Autoservicio de pedidos para clientes</h2>
-                <ul>
-                    <li>Problema: los clientes tenían que llamar por teléfono para que alguien registrara su pedido manualmente</li>
-                    <li>Solución: una página donde el cliente registra su propio pedido, reflejándose automáticamente como pendiente en el sistema</li>
-                    <li>Resultado: menos dependencia de llamadas telefónicas, menos errores de registro manual</li>
-                </ul>
-        </div>
-        
+            <h2>Agenda SFT Move Center</h2>
+            <p>Horario semanal de clases grupales y personalizadas con estado por color.</p>
+        </a>
+
+    </div>
 </div>
+
+<style>
+    .proyectos-subtitle {
+        opacity: 0.7;
+        margin-bottom: 2rem;
+    }
+
+    .proyectos-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+        gap: 24px;
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 0 16px;
+    }
+
+    .proyecto-mini-card {
+        display: block;
+        text-decoration: none;
+        color: inherit;
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 4px 14px rgba(0,0,0,0.08);
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+        background: #fff;
+        text-align: left;
+    }
+
+        .proyecto-mini-card:not(.static):hover {
+            transform: translateY(-4px);
+            box-shadow: 0 10px 24px rgba(0,0,0,0.15);
+        }
+
+        .proyecto-mini-card h2 {
+            font-size: 1.05rem;
+            margin: 12px 16px 4px;
+        }
+
+        .proyecto-mini-card p {
+            font-size: 0.85rem;
+            opacity: 0.75;
+            margin: 0 16px 16px;
+        }
+
+    /* Ventana miniatura tipo navegador */
+    .mini-window {
+        aspect-ratio: 16 / 10;
+        background: #eef0f4;
+        overflow: hidden;
+        position: relative;
+    }
+
+    .mini-window-bar {
+        display: flex;
+        gap: 4px;
+        padding: 6px 8px;
+        background: #2b2b33;
+    }
+
+        .mini-window-bar span {
+            width: 6px;
+            height: 6px;
+            border-radius: 50%;
+            background: #6b6b76;
+        }
+
+    .mini-window-scale {
+        width: 100%;
+        height: calc(100% - 20px);
+        overflow: hidden;
+    }
+
+    .mini-preview {
+        width: 800px;
+        height: 500px;
+        transform: scale(0.335);
+        transform-origin: top left;
+        display: flex;
+    }
+
+    /* Preview: Inspecciones (pantalla de login) */
+    .mini-inspecciones {
+        flex-direction: column;
+        background: #f7f7fb;
+        padding: 0;
+    }
+
+    .mp-header {
+        padding: 20px 24px;
+        font-weight: 700;
+        font-size: 22px;
+    }
+
+    .mp-login-box {
+        width: 260px;
+        margin: 20px auto;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+        background: #fff;
+        padding: 20px;
+        border-radius: 10px;
+    }
+
+    .mp-label {
+        font-size: 14px;
+        opacity: 0.6;
+    }
+
+    .mp-input {
+        height: 26px;
+        border-radius: 6px;
+        background: #eee;
+    }
+
+    .mp-btn {
+        margin-top: 8px;
+        height: 32px;
+        border-radius: 8px;
+        background: #4f46e5;
+        color: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 14px;
+    }
+
+    /* Preview: EdificioApp (sidebar + dashboard) */
+    .mini-edificio {
+        background: #f7f7fb;
+    }
+
+    .mp-sidebar-mini {
+        width: 170px;
+        background: linear-gradient(180deg, rgb(5,39,103) 0%, #3a0647 70%);
+        flex-shrink: 0;
+        padding: 16px 12px;
+    }
+
+        .mp-sidebar-mini.blue {
+            background: #1565c0;
+        }
+
+    .mp-plaque {
+        width: 30px;
+        height: 30px;
+        border: 2px solid #C08A3E;
+        color: #C08A3E;
+        border-radius: 6px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: 700;
+        margin-bottom: 20px;
+    }
+
+    .mp-logo-mini {
+        color: #fff;
+        font-weight: 700;
+        font-size: 18px;
+        margin-bottom: 20px;
+    }
+
+    .mp-nav-line {
+        height: 10px;
+        background: rgba(255,255,255,0.25);
+        border-radius: 4px;
+        margin-bottom: 14px;
+        width: 80%;
+    }
+
+    .mp-content-mini {
+        flex: 1;
+        padding: 24px;
+    }
+
+    .mp-cards-row {
+        display: flex;
+        gap: 14px;
+        margin-bottom: 20px;
+    }
+
+    .mp-card-mini {
+        flex: 1;
+        height: 70px;
+        background: #fff;
+        border-radius: 8px;
+        box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+    }
+
+    .mp-table-mini {
+        height: 120px;
+        background: #fff;
+        border-radius: 8px;
+        box-shadow: 0 2px 6px rgba(0,0,0,0.06);
+        margin-bottom: 12px;
+    }
+
+        .mp-table-mini.wide {
+            height: 90px;
+        }
+
+    /* Preview: Agenda SFT (login teal + tabla) */
+    .mini-agenda {
+        flex-direction: column;
+        background: #fff;
+        padding: 20px;
+    }
+
+    .mp-agenda-header {
+        font-weight: 700;
+        font-size: 22px;
+        margin-bottom: 16px;
+    }
+
+    .mp-agenda-table {
+        display: flex;
+        flex-direction: column;
+        gap: 6px;
+    }
+
+    .mp-agenda-row {
+        display: flex;
+        gap: 6px;
+    }
+
+    .mp-cell {
+        flex: 1;
+        height: 40px;
+        background: #eee;
+        border-radius: 4px;
+    }
+
+        .mp-cell.head {
+            background: #212529;
+            height: 24px;
+        }
+
+        .mp-cell.green {
+            background: #00f539;
+        }
+
+        .mp-cell.red {
+            background: #fe0318;
+        }
+
+        .mp-cell.blue {
+            background: #5bc0de;
+        }
+
+        .mp-cell.purple {
+            background: #c49fff;
+        }
+
+    /* Placeholder para proyectos sin demo */
+    .mini-window.placeholder {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .mp-placeholder-text {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #999;
+        font-size: 0.85rem;
+        background: #f2f2f5;
+    }
+
+    .proyecto-mini-card.static {
+        cursor: default;
+    }
+</style>

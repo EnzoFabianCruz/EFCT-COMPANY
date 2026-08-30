@@ -1,0 +1,205 @@
+@page
+@model ProyectoEmprendimiento_paginaweb.Pages.MediboxDemoModel
+@{
+    ViewData["Title"] = "Demo: Medibox";
+}
+
+<div class="demo-wrapper">
+    <a href="/Proyectos" class="demo-back">&larr; Volver a proyectos</a>
+
+    <div class="demo-frame">
+        <div class="demo-toolbar">
+            <span class="dot red"></span>
+            <span class="dot yellow"></span>
+            <span class="dot green"></span>
+            <span class="demo-title">Vista de demostración — datos de ejemplo</span>
+        </div>
+
+        <!-- PANTALLA: LOGIN -->
+        <div class="mb-screen" id="mb-login">
+            <div class="mb-login-card">
+                <div class="mb-logo">Medibox</div>
+                <label>Usuario</label>
+                <input type="text" value="almacen.chorrillos" readonly />
+                <label>Contraseña</label>
+                <input type="password" value="••••••••" readonly />
+                <button class="demo-btn" onclick="mbGoTo('mb-app')">Ingresar</button>
+                <a class="mb-forgot" href="javascript:void(0)">¿Olvidaste tu contraseña?</a>
+            </div>
+        </div>
+
+        <!-- APP -->
+        <div class="mb-screen hidden" id="mb-app">
+            <div class="mb-app-shell">
+                <aside class="mb-sidebar">
+                    <h4>Medibox</h4>
+                    <hr />
+                    <div class="mb-nav-item active" onclick="mbShowContent('stock', this)">📦 Stock actual</div>
+                    <div class="mb-nav-item" onclick="mbShowContent('pedidos', this)">📝 Pedidos</div>
+                    <hr />
+                    <div class="mb-nav-item" onclick="mbGoTo('mb-login')">🚪 Salir</div>
+                    <div class="mb-sidebar-footer">
+                        <div class="mb-user-name">almacen.chorrillos</div>
+                        <div class="mb-user-company">Empresa: Farmadistribuciones S.A.</div>
+                    </div>
+                </aside>
+
+                <main class="mb-content">
+                    <!-- STOCK -->
+                    <section class="mb-panel" id="mb-stock">
+                        <h2>Stock de productos</h2>
+                        <div class="mb-filters">
+                            <label>Mostrar</label>
+                            <select><option>Solo con stock</option><option>Todos los productos</option></select>
+                            <label>Buscar por</label>
+                            <select><option>Nombre</option><option>Código</option><option>Lote</option></select>
+                            <input type="text" placeholder="Buscar..." />
+                            <button class="demo-btn small">🔍 Buscar</button>
+                        </div>
+                        <table class="mb-table">
+                            <thead>
+                                <tr><th>Código</th><th>Producto</th><th>Lote</th><th>Vencimiento</th><th>Stock</th></tr>
+                            </thead>
+                            <tbody>
+                                <tr><td>MED-0231</td><td>Paracetamol 500mg x100</td><td>L2309A</td><td>03/2027</td><td>420</td></tr>
+                                <tr><td>MED-0110</td><td>Amoxicilina 500mg x50</td><td>L2401C</td><td>11/2026</td><td>85</td></tr>
+                                <tr><td>MED-0342</td><td>Suero Fisiológico 1L</td><td>L2312B</td><td>07/2026</td><td>0</td></tr>
+                            </tbody>
+                        </table>
+                    </section>
+
+                    <!-- PEDIDOS -->
+                    <section class="mb-panel hidden" id="mb-pedidos">
+                        <h2>Pedidos registrados</h2>
+                        <div class="mb-filters">
+                            <button class="demo-btn small" onclick="mbToggleModal(true)">+ Nuevo Pedido</button>
+                            <label>Desde</label><input type="text" value="01/08/2026" readonly />
+                            <label>Hasta</label><input type="text" value="26/08/2026" readonly />
+                            <label><input type="radio" checked disabled /> Todos</label>
+                            <label><input type="radio" disabled /> Registrados</label>
+                            <label><input type="radio" disabled /> Anulados</label>
+                        </div>
+                        <table class="mb-table">
+                            <thead>
+                                <tr><th>N° Pedido</th><th>Almacén</th><th>Fecha registro</th><th>Estado</th><th></th></tr>
+                            </thead>
+                            <tbody>
+                                <tr><td>10234</td><td>CHORRILLOS</td><td>25/08/2026</td><td><span class="badge ok">Registrado</span></td><td>🔍</td></tr>
+                                <tr><td>10233</td><td>CHORRILLOS</td><td>22/08/2026</td><td><span class="badge overdue">Anulado</span></td><td>🔍</td></tr>
+                                <tr><td>10230</td><td>CHORRILLOS</td><td>18/08/2026</td><td><span class="badge ok">Registrado</span></td><td>🔍</td></tr>
+                            </tbody>
+                        </table>
+
+                        <!-- Modal simplificado Nuevo Pedido -->
+                        <div class="mb-modal-overlay hidden" id="mb-modal">
+                            <div class="mb-modal">
+                                <div class="mb-modal-header">
+                                    <span>Nuevo Pedido</span>
+                                    <span class="mb-modal-close" onclick="mbToggleModal(false)">&times;</span>
+                                </div>
+                                <div class="mb-modal-body">
+                                    <div class="mb-modal-row">
+                                        <div><label>Fecha</label><input type="text" value="26/08/2026" readonly /></div>
+                                        <div><label>Almacén</label><input type="text" value="CHORRILLOS" readonly /></div>
+                                        <div><label>Solicitado por</label><input type="text" placeholder="Nombre..." /></div>
+                                    </div>
+                                    <h4>Detalle de productos</h4>
+                                    <table class="mb-table small">
+                                        <thead><tr><th>Código</th><th>Producto</th><th>Lote</th><th>Cant.</th><th></th></tr></thead>
+                                        <tbody>
+                                            <tr><td>MED-0231</td><td>Paracetamol 500mg x100</td><td>L2309A</td><td>10</td><td>🗑</td></tr>
+                                        </tbody>
+                                    </table>
+                                    <button class="demo-btn secondary small">+ Agregar Producto</button>
+                                </div>
+                                <div class="mb-modal-footer">
+                                    <button class="demo-btn small" onclick="mbToggleModal(false)">Grabar</button>
+                                    <button class="demo-btn secondary small" onclick="mbToggleModal(false)">Cerrar</button>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </main>
+            </div>
+            <div class="mb-restart-row">
+                <button class="demo-btn secondary" onclick="mbGoTo('mb-login')">Reiniciar demo</button>
+            </div>
+        </div>
+    </div>
+
+    <p class="demo-caption">Esta es una simulación con datos de ejemplo, no el sistema real ni datos de ningún cliente.</p>
+</div>
+
+<style>
+    .demo-wrapper { max-width: 900px; margin: 2rem auto; font-family: "Segoe UI", inherit; }
+    .demo-back { display: inline-block; margin-bottom: 1rem; text-decoration: none; font-weight: 600; }
+    .demo-frame { border: 1px solid rgba(0,0,0,0.15); border-radius: 12px; overflow: hidden; box-shadow: 0 8px 24px rgba(0,0,0,0.12); }
+    .demo-toolbar { display: flex; align-items: center; gap: 6px; padding: 10px 14px; background: #2b2b33; }
+    .demo-toolbar .dot { width: 10px; height: 10px; border-radius: 50%; }
+    .dot.red { background: #ff5f56; } .dot.yellow { background: #ffbd2e; } .dot.green { background: #27c93f; }
+    .demo-title { margin-left: 10px; color: #cfcfd6; font-size: 0.8rem; }
+    .demo-btn { padding: 10px 16px; border: none; border-radius: 8px; background: #1565c0; color: #fff; font-weight: 600; cursor: pointer; }
+    .demo-btn.secondary { background: #6b7280; }
+    .demo-btn.small { padding: 6px 12px; font-size: 0.85rem; }
+    .demo-caption { text-align: center; font-size: 0.8rem; opacity: 0.65; margin-top: 10px; }
+    .mb-screen.hidden { display: none; }
+
+    #mb-login { background: #f5f7fa; min-height: 460px; display: flex; align-items: center; justify-content: center; }
+    .mb-login-card { background: #fff; border-radius: 10px; padding: 28px 32px; width: 300px; display: flex; flex-direction: column; gap: 8px; box-shadow: 0 4px 16px rgba(0,0,0,0.08); }
+    .mb-logo { font-size: 1.4rem; font-weight: 700; color: #1565c0; text-align: center; margin-bottom: 10px; }
+    .mb-login-card input { padding: 8px 10px; border-radius: 6px; border: 1px solid #d5d5dd; margin-bottom: 6px; }
+    .mb-login-card .demo-btn { margin-top: 8px; }
+    .mb-forgot { text-align: center; font-size: 0.8rem; margin-top: 6px; color: #1565c0; }
+
+    .mb-app-shell { display: flex; min-height: 460px; }
+    .mb-sidebar { width: 210px; flex-shrink: 0; background: #1565c0; color: #fff; padding: 18px 0; display: flex; flex-direction: column; }
+    .mb-sidebar h4 { text-align: center; margin: 0 0 12px; }
+    .mb-sidebar hr { border-color: rgba(255,255,255,0.25); width: 85%; margin: 10px auto; }
+    .mb-nav-item { padding: 10px 20px; cursor: pointer; font-size: 0.9rem; }
+    .mb-nav-item:hover, .mb-nav-item.active { background: #1e88e5; }
+    .mb-sidebar-footer { margin-top: auto; padding: 12px 20px; border-top: 1px solid rgba(255,255,255,0.15); font-size: 0.75rem; }
+    .mb-content { flex: 1; background: #f5f7fa; padding: 20px; overflow-y: auto; }
+    .mb-panel.hidden { display: none; }
+    .mb-filters { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; margin-bottom: 14px; font-size: 0.85rem; }
+    .mb-filters select, .mb-filters input[type=text] { padding: 5px 8px; border-radius: 6px; border: 1px solid #d5d5dd; }
+    .mb-table { width: 100%; border-collapse: collapse; font-size: 0.88rem; background: #fff; border-radius: 8px; overflow: hidden; }
+    .mb-table.small { font-size: 0.8rem; }
+    .mb-table th, .mb-table td { text-align: left; padding: 8px 10px; border-bottom: 1px solid #eee; }
+    .mb-table th { background: #e3edfa; }
+    .badge { padding: 2px 8px; border-radius: 20px; font-size: 0.75rem; }
+    .badge.ok { background: #d1e7dd; color: #0f5132; }
+    .badge.overdue { background: #f8d7da; color: #842029; }
+    .mb-restart-row { text-align: right; padding: 10px 20px; background: #e9edf3; }
+
+    .mb-modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.45); display: flex; align-items: center; justify-content: center; z-index: 50; }
+    .mb-modal-overlay.hidden { display: none; }
+    .mb-modal { background: #fff; border-radius: 10px; width: 92%; max-width: 560px; max-height: 85vh; overflow-y: auto; }
+    .mb-modal-header { background: #1565c0; color: #fff; padding: 12px 16px; display: flex; justify-content: space-between; border-radius: 10px 10px 0 0; }
+    .mb-modal-close { cursor: pointer; font-size: 1.2rem; }
+    .mb-modal-body { padding: 16px; }
+    .mb-modal-row { display: flex; gap: 12px; margin-bottom: 12px; flex-wrap: wrap; }
+    .mb-modal-row input { padding: 6px 8px; border-radius: 6px; border: 1px solid #d5d5dd; width: 150px; }
+    .mb-modal-footer { padding: 10px 16px; border-top: 1px solid #eee; display: flex; justify-content: flex-end; gap: 8px; }
+
+    @@media (max-width: 640px) {
+        .mb-app-shell { flex-direction: column; }
+        .mb-sidebar { width: 100%; }
+        .mb-modal-row input { width: 100%; }
+    }
+</style>
+
+<script>
+    function mbGoTo(screenId) {
+        document.querySelectorAll('.mb-screen').forEach(s => s.classList.add('hidden'));
+        document.getElementById(screenId).classList.remove('hidden');
+    }
+    function mbShowContent(panelKey, navEl) {
+        document.querySelectorAll('.mb-panel').forEach(p => p.classList.add('hidden'));
+        document.getElementById('mb-' + panelKey).classList.remove('hidden');
+        document.querySelectorAll('.mb-nav-item').forEach(n => n.classList.remove('active'));
+        navEl.classList.add('active');
+    }
+    function mbToggleModal(show) {
+        document.getElementById('mb-modal').classList.toggle('hidden', !show);
+    }
+</script>

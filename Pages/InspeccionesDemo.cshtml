@@ -1,0 +1,106 @@
+@page
+@model ProyectoEmprendimiento_paginaweb.Pages.InspeccionesDemoModel
+@{
+    ViewData["Title"] = "Demo: Inspecciones en Campo";
+}
+
+<div class="demo-wrapper">
+    <a href="/Proyectos" class="demo-back">&larr; Volver a proyectos</a>
+
+    <div class="demo-frame">
+        <div class="demo-toolbar">
+            <span class="dot red"></span>
+            <span class="dot yellow"></span>
+            <span class="dot green"></span>
+            <span class="demo-title">Vista de demostración — datos de ejemplo</span>
+        </div>
+
+        <div class="demo-screen" id="screen-login">
+            <div class="demo-app-header">Inspecciones App</div>
+            <div class="demo-login-box">
+                <h3>Iniciar sesión</h3>
+                <label>Usuario</label>
+                <input type="text" value="carlos.ramos" readonly />
+                <label>Contraseña</label>
+                <input type="password" value="••••••••" readonly />
+                <button class="demo-btn" onclick="goTo('screen-form')">Ingresar</button>
+            </div>
+        </div>
+
+        <div class="demo-screen hidden" id="screen-form">
+            <div class="demo-app-header">
+                Nueva Inspección
+                <span class="demo-user">Carlos Ramos</span>
+            </div>
+            <div class="demo-form-box">
+                <label>Sitio</label>
+                <input type="text" value="Planta Norte - Línea 3" readonly />
+                <label>Fecha</label>
+                <input type="text" value="26/08/2026" readonly />
+                <label>Observaciones</label>
+                <textarea readonly>Válvula de presión con fuga menor. Se recomienda revisión en próximos 15 días.</textarea>
+                <label>Evidencia fotográfica</label>
+                <div class="demo-photo-placeholder">📷 foto_planta_norte.jpg</div>
+                <button class="demo-btn" onclick="goTo('screen-dashboard')">Enviar inspección</button>
+            </div>
+        </div>
+
+        <div class="demo-screen hidden" id="screen-dashboard">
+            <div class="demo-app-header">
+                Panel de Inspecciones
+                <span class="demo-user">Carlos Ramos</span>
+            </div>
+            <div class="demo-dashboard-box">
+                <div class="demo-toast">✔ Inspección registrada correctamente</div>
+                <table class="demo-table">
+                    <thead>
+                        <tr><th>Sitio</th><th>Fecha</th><th>Estado</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr><td>Planta Norte - Línea 3</td><td>26/08/2026</td><td><span class="badge pending">Pendiente revisión</span></td></tr>
+                        <tr><td>Planta Sur - Línea 1</td><td>24/08/2026</td><td><span class="badge ok">Resuelto</span></td></tr>
+                        <tr><td>Almacén Central</td><td>20/08/2026</td><td><span class="badge ok">Resuelto</span></td></tr>
+                    </tbody>
+                </table>
+                <button class="demo-btn secondary" onclick="goTo('screen-login')">Reiniciar demo</button>
+            </div>
+        </div>
+    </div>
+
+    <p class="demo-caption">Esta es una simulación con datos de ejemplo, no el sistema real ni datos de ningún cliente.</p>
+</div>
+
+<style>
+    .demo-wrapper { max-width: 480px; margin: 2rem auto; font-family: inherit; }
+    .demo-back { display: inline-block; margin-bottom: 1rem; text-decoration: none; font-weight: 600; }
+    .demo-frame { border: 1px solid rgba(0,0,0,0.15); border-radius: 12px; overflow: hidden; box-shadow: 0 8px 24px rgba(0,0,0,0.12); }
+    .demo-toolbar { display: flex; align-items: center; gap: 6px; padding: 10px 14px; background: #2b2b33; }
+    .demo-toolbar .dot { width: 10px; height: 10px; border-radius: 50%; }
+    .dot.red { background: #ff5f56; } .dot.yellow { background: #ffbd2e; } .dot.green { background: #27c93f; }
+    .demo-title { margin-left: 10px; color: #cfcfd6; font-size: 0.8rem; }
+    .demo-screen { padding: 20px; background: #f7f7fb; min-height: 380px; }
+    .demo-screen.hidden { display: none; }
+    .demo-app-header { display: flex; justify-content: space-between; align-items: center; font-weight: 700; margin-bottom: 16px; }
+    .demo-user { font-size: 0.8rem; font-weight: 400; opacity: 0.7; }
+    .demo-login-box, .demo-form-box, .demo-dashboard-box { display: flex; flex-direction: column; gap: 8px; }
+    .demo-login-box input, .demo-form-box input, .demo-form-box textarea {
+        padding: 8px 10px; border-radius: 8px; border: 1px solid #d5d5dd; background: #fff; font-size: 0.9rem;
+    }
+    .demo-photo-placeholder { padding: 10px; border: 1px dashed #b5b5c0; border-radius: 8px; text-align: center; font-size: 0.85rem; color: #666; }
+    .demo-btn { margin-top: 10px; padding: 10px; border: none; border-radius: 8px; background: #4f46e5; color: #fff; font-weight: 600; cursor: pointer; }
+    .demo-btn.secondary { background: #6b7280; }
+    .demo-toast { background: #e7f9ee; color: #157347; padding: 8px 12px; border-radius: 8px; font-size: 0.85rem; margin-bottom: 10px; }
+    .demo-table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
+    .demo-table th, .demo-table td { text-align: left; padding: 6px 4px; border-bottom: 1px solid #e2e2ea; }
+    .badge { padding: 2px 8px; border-radius: 20px; font-size: 0.75rem; }
+    .badge.pending { background: #fff3cd; color: #856404; }
+    .badge.ok { background: #d1e7dd; color: #0f5132; }
+    .demo-caption { text-align: center; font-size: 0.8rem; opacity: 0.65; margin-top: 10px; }
+</style>
+
+<script>
+    function goTo(screenId) {
+        document.querySelectorAll('.demo-screen').forEach(s => s.classList.add('hidden'));
+        document.getElementById(screenId).classList.remove('hidden');
+    }
+</script>

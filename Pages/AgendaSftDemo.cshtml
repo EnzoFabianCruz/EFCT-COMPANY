@@ -1,0 +1,164 @@
+@page
+@model ProyectoEmprendimiento_paginaweb.Pages.AgendaSftDemoModel
+@{
+    ViewData["Title"] = "Demo: Agenda SFT Move Center";
+}
+
+<div class="demo-wrapper">
+    <a href="/Proyectos" class="demo-back">&larr; Volver a proyectos</a>
+
+    <div class="demo-frame">
+        <div class="demo-toolbar">
+            <span class="dot red"></span>
+            <span class="dot yellow"></span>
+            <span class="dot green"></span>
+            <span class="demo-title">Vista de demostración — datos de ejemplo</span>
+        </div>
+
+        <!-- PANTALLA: LOGIN -->
+        <div class="ag-screen" id="ag-login">
+            <div class="ag-login-card">
+                <h1>SFT Move Center</h1>
+                <h2>Iniciar Sesión</h2>
+                <input type="text" value="instructor01" readonly />
+                <input type="password" value="••••••••" readonly />
+                <button class="demo-btn" onclick="agGoTo('ag-agenda')">Entrar</button>
+            </div>
+        </div>
+
+        <!-- PANTALLA: AGENDA -->
+        <div class="ag-screen hidden" id="ag-agenda">
+            <div class="ag-agenda-box">
+                <h2>Agenda SFT</h2>
+                <p class="ag-week"><strong>Semana del 24/08/2026 al 30/08/2026</strong></p>
+                <div class="ag-nav">
+                    <span>&larr; Semana anterior</span> | <span class="current">Semana actual</span> | <span>Semana siguiente &rarr;</span>
+                </div>
+
+                <div class="ag-table-wrapper">
+                    <table class="ag-table">
+                        <thead>
+                            <tr>
+                                <th>Hora</th>
+                                <th>Lunes</th>
+                                <th>Martes</th>
+                                <th>Miércoles</th>
+                                <th>Jueves</th>
+                                <th>Viernes</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>08:00 - 09:00</td>
+                                <td class="c-grupal">Spinning</td>
+                                <td class="c-personalizado">1:1 J. Torres</td>
+                                <td class="c-grupal">Spinning</td>
+                                <td></td>
+                                <td class="c-grupal">Funcional</td>
+                            </tr>
+                            <tr>
+                                <td>09:00 - 10:00</td>
+                                <td class="c-personalizado-no">Ocupado</td>
+                                <td></td>
+                                <td class="c-personalizado-no">Ocupado</td>
+                                <td class="c-grupal-pr">Zumba (por confirmar)</td>
+                                <td></td>
+                            </tr>
+                            <tr class="ag-hora-separador"><td colspan="6"></td></tr>
+                            <tr>
+                                <td>18:00 - 19:00</td>
+                                <td class="c-grupal">Crossfit</td>
+                                <td class="c-grupal-no">Cancelado</td>
+                                <td class="c-grupal">Crossfit</td>
+                                <td class="c-personalizado">1:1 M. Vega</td>
+                                <td class="c-grupal">Crossfit</td>
+                            </tr>
+                            <tr>
+                                <td>19:00 - 20:00</td>
+                                <td></td>
+                                <td class="c-grupal">Yoga</td>
+                                <td></td>
+                                <td class="c-grupal">Yoga</td>
+                                <td></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="ag-legend">
+                    <span><i class="c-grupal"></i> Grupal</span>
+                    <span><i class="c-grupal-no"></i> Grupal cancelada</span>
+                    <span><i class="c-grupal-pr"></i> Grupal por confirmar</span>
+                    <span><i class="c-personalizado"></i> Personalizado</span>
+                    <span><i class="c-personalizado-no"></i> Personalizado ocupado</span>
+                </div>
+
+                <div class="ag-restart-row">
+                    <button class="demo-btn secondary" onclick="agGoTo('ag-login')">Reiniciar demo</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <p class="demo-caption">Esta es una simulación con datos de ejemplo, no el sistema real ni datos de ningún cliente.</p>
+</div>
+
+<style>
+    .demo-wrapper { max-width: 820px; margin: 2rem auto; font-family: "Segoe UI", inherit; }
+    .demo-back { display: inline-block; margin-bottom: 1rem; text-decoration: none; font-weight: 600; }
+    .demo-frame { border: 1px solid rgba(0,0,0,0.15); border-radius: 12px; overflow: hidden; box-shadow: 0 8px 24px rgba(0,0,0,0.12); }
+    .demo-toolbar { display: flex; align-items: center; gap: 6px; padding: 10px 14px; background: #2b2b33; }
+    .demo-toolbar .dot { width: 10px; height: 10px; border-radius: 50%; }
+    .dot.red { background: #ff5f56; } .dot.yellow { background: #ffbd2e; } .dot.green { background: #27c93f; }
+    .demo-title { margin-left: 10px; color: #cfcfd6; font-size: 0.8rem; }
+    .demo-btn { padding: 10px 16px; border: none; border-radius: 8px; background: #2c5364; color: #fff; font-weight: 600; cursor: pointer; }
+    .demo-btn.secondary { background: #6b7280; }
+    .demo-caption { text-align: center; font-size: 0.8rem; opacity: 0.65; margin-top: 10px; }
+    .ag-screen.hidden { display: none; }
+
+    #ag-login {
+        background: linear-gradient(to right, #0f2027, #203a43, #2c5364);
+        min-height: 440px; display: flex; align-items: center; justify-content: center;
+    }
+    .ag-login-card {
+        background: #fff; border-radius: 12px; padding: 36px 30px; width: 280px; text-align: center;
+        box-shadow: 0 0 20px rgba(0,0,0,0.3);
+    }
+    .ag-login-card h1 { margin: 0 0 6px; color: #2c5364; font-size: 1.3rem; }
+    .ag-login-card h2 { margin: 0 0 16px; font-weight: normal; color: #555; font-size: 1rem; }
+    .ag-login-card input { width: 100%; padding: 9px; margin: 6px 0; border-radius: 6px; border: 1px solid #ccc; background: #f5f9ff; box-sizing: border-box; }
+    .ag-login-card .demo-btn { width: 100%; margin-top: 8px; }
+
+    .ag-agenda-box { padding: 20px; background: #fff; }
+    .ag-week { margin: 4px 0 10px; }
+    .ag-nav { font-size: 0.85rem; margin-bottom: 14px; color: #2c5364; }
+    .ag-nav .current { font-weight: 700; }
+    .ag-table-wrapper { overflow-x: auto; border: 1px solid #ccc; }
+    .ag-table { width: 100%; border-collapse: collapse; font-size: 0.82rem; table-layout: fixed; }
+    .ag-table th { background: #212529; color: #fff; padding: 8px 6px; position: sticky; top: 0; }
+    .ag-table td { padding: 8px 6px; border: 1px solid #e5e5e5; text-align: center; }
+    .ag-table td:first-child, .ag-table th:first-child { width: 100px; font-weight: 600; background: #f5f5f5; }
+    .ag-hora-separador td { border: none; height: 4px; background: #d0d0d0; padding: 0; }
+
+    .c-grupal { background-color: #00f539; }
+    .c-grupal-no { background-color: #fe0318; color: #fff; }
+    .c-grupal-pr { background-color: #c49fff; }
+    .c-personalizado { background-color: #5bc0de; }
+    .c-personalizado-no { background-color: #007bff; color: #fff; }
+
+    .ag-legend { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 14px; font-size: 0.78rem; align-items: center; }
+    .ag-legend i { display: inline-block; width: 12px; height: 12px; border-radius: 3px; margin-right: 4px; vertical-align: middle; }
+    .ag-restart-row { text-align: right; margin-top: 16px; }
+
+    @@media (max-width: 640px) {
+        .ag-table { font-size: 0.7rem; }
+        .ag-table td:first-child, .ag-table th:first-child { width: 70px; }
+    }
+</style>
+
+<script>
+    function agGoTo(screenId) {
+        document.querySelectorAll('.ag-screen').forEach(s => s.classList.add('hidden'));
+        document.getElementById(screenId).classList.remove('hidden');
+    }
+</script>

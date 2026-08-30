@@ -1,0 +1,223 @@
+@page
+@model ProyectoEmprendimiento_paginaweb.Pages.EdificioAppDemoModel
+@{
+    ViewData["Title"] = "Demo: EdificioApp";
+}
+
+<div class="demo-wrapper">
+    <a href="/Proyectos" class="demo-back">&larr; Volver a proyectos</a>
+
+    <div class="demo-frame">
+        <div class="demo-toolbar">
+            <span class="dot red"></span>
+            <span class="dot yellow"></span>
+            <span class="dot green"></span>
+            <span class="demo-title">Vista de demostración — datos de ejemplo</span>
+        </div>
+
+        <!-- PANTALLA: LOGIN -->
+        <div class="ea-screen" id="ea-login">
+            <div class="ea-login-card">
+                <div class="ea-login-brand">
+                    <span class="ea-plaque">E</span>
+                    <h1>EdificioApp</h1>
+                </div>
+                <label>Email</label>
+                <input type="text" value="presidenta@edificioapp.com" readonly />
+                <label>Contraseña</label>
+                <input type="password" value="••••••••" readonly />
+                <button class="demo-btn" onclick="eaGoTo('ea-app')">Ingresar</button>
+            </div>
+        </div>
+
+        <!-- APP (sidebar + contenido) -->
+        <div class="ea-screen hidden" id="ea-app">
+            <div class="ea-app-shell">
+                <aside class="ea-sidebar">
+                    <div class="ea-brand-row">
+                        <span class="ea-plaque small">E</span>
+                        <span>EdificioApp</span>
+                    </div>
+                    <nav class="ea-nav">
+                        <div class="ea-nav-item active" onclick="eaShowContent('inicio', this)">Inicio</div>
+                        <div class="ea-nav-group">Mantenimiento</div>
+                        <div class="ea-nav-item sub" onclick="eaShowContent('depa', this)">Departamentos</div>
+                        <div class="ea-nav-group">Facturación</div>
+                        <div class="ea-nav-item sub" onclick="eaShowContent('boletas', this)">Boletas</div>
+                        <div class="ea-nav-group">Servicios</div>
+                        <div class="ea-nav-item sub" onclick="eaShowContent('solicitudes', this)">Mis solicitudes</div>
+                        <div class="ea-nav-group">Juntas</div>
+                        <div class="ea-nav-item sub" onclick="eaShowContent('juntas', this)">Juntas</div>
+                    </nav>
+                    <div class="ea-user-footer">
+                        <span class="ea-avatar">PR</span>
+                        <span>
+                            <div class="ea-user-email">presidenta@edificioapp.com</div>
+                            <div class="ea-user-role">Presidenta</div>
+                        </span>
+                    </div>
+                </aside>
+
+                <main class="ea-content">
+                    <!-- INICIO -->
+                    <section class="ea-panel" id="ea-inicio">
+                        <h2>Hola, presidenta@edificioapp.com</h2>
+                        <p class="ea-muted">Rol: Presidenta</p>
+                        <div class="ea-cards">
+                            <div class="ea-card">
+                                <div class="ea-card-label">Boletas pendientes/vencidas</div>
+                                <div class="ea-card-value">7</div>
+                                <div class="ea-card-sub">S/ 2,340.00</div>
+                            </div>
+                            <div class="ea-card">
+                                <div class="ea-card-label">Total recaudado (histórico)</div>
+                                <div class="ea-card-value">S/ 48,900.00</div>
+                            </div>
+                            <div class="ea-card">
+                                <div class="ea-card-label">Próximas juntas</div>
+                                <div class="ea-card-value">2</div>
+                            </div>
+                            <div class="ea-card">
+                                <div class="ea-card-label">Mantenimientos programados</div>
+                                <div class="ea-card-value">3</div>
+                            </div>
+                        </div>
+                        <h3>Próximas juntas</h3>
+                        <table class="ea-table">
+                            <thead><tr><th>Título</th><th>Fecha</th><th>Lugar</th></tr></thead>
+                            <tbody>
+                                <tr><td>Junta ordinaria trimestral</td><td>02/09/2026 19:00</td><td>Salón comunal</td></tr>
+                                <tr><td>Revisión de presupuesto 2027</td><td>15/09/2026 19:00</td><td>Salón comunal</td></tr>
+                            </tbody>
+                        </table>
+                    </section>
+
+                    <!-- DEPARTAMENTOS -->
+                    <section class="ea-panel hidden" id="ea-depa">
+                        <h2>Departamentos</h2>
+                        <table class="ea-table">
+                            <thead><tr><th>Número</th><th>Piso</th><th>Área m²</th><th>Cuota mantenimiento</th><th>Activo</th></tr></thead>
+                            <tbody>
+                                <tr><td>101</td><td>1</td><td>85.4</td><td>S/ 180.00</td><td>Sí</td></tr>
+                                <tr><td>302</td><td>3</td><td>92.1</td><td>S/ 195.00</td><td>Sí</td></tr>
+                                <tr><td>501</td><td>5</td><td>110.0</td><td>S/ 230.00</td><td>No</td></tr>
+                            </tbody>
+                        </table>
+                    </section>
+
+                    <!-- BOLETAS -->
+                    <section class="ea-panel hidden" id="ea-boletas">
+                        <h2>Boletas</h2>
+                        <table class="ea-table">
+                            <thead><tr><th>Depto</th><th>Periodo</th><th>Vencimiento</th><th>Monto</th><th>Estado</th></tr></thead>
+                            <tbody>
+                                <tr><td>302</td><td>Agosto 2026</td><td>05/09/2026</td><td>S/ 195.00</td><td><span class="badge pending">Pendiente</span></td></tr>
+                                <tr><td>101</td><td>Agosto 2026</td><td>05/09/2026</td><td>S/ 180.00</td><td><span class="badge ok">Pagada</span></td></tr>
+                                <tr><td>501</td><td>Julio 2026</td><td>05/08/2026</td><td>S/ 230.00</td><td><span class="badge overdue">Vencida</span></td></tr>
+                            </tbody>
+                        </table>
+                    </section>
+
+                    <!-- SOLICITUDES -->
+                    <section class="ea-panel hidden" id="ea-solicitudes">
+                        <h2>Mis solicitudes</h2>
+                        <table class="ea-table">
+                            <thead><tr><th>Tipo</th><th>Descripción</th><th>Estado</th><th>Fecha</th></tr></thead>
+                            <tbody>
+                                <tr><td>Plomería</td><td>Fuga en llave del pasillo 3er piso</td><td><span class="badge pending">En proceso</span></td><td>20/08/2026 10:15</td></tr>
+                                <tr><td>Electricidad</td><td>Foco quemado en estacionamiento</td><td><span class="badge ok">Resuelta</span></td><td>12/08/2026 09:00</td></tr>
+                            </tbody>
+                        </table>
+                    </section>
+
+                    <!-- JUNTAS -->
+                    <section class="ea-panel hidden" id="ea-juntas">
+                        <h2>Juntas</h2>
+                        <table class="ea-table">
+                            <thead><tr><th>Título</th><th>Fecha</th><th>Lugar</th><th>Estado</th></tr></thead>
+                            <tbody>
+                                <tr><td>Junta ordinaria trimestral</td><td>02/09/2026 19:00</td><td>Salón comunal</td><td><span class="badge pending">Programada</span></td></tr>
+                                <tr><td>Junta extraordinaria - obras</td><td>10/07/2026 19:00</td><td>Salón comunal</td><td><span class="badge ok">Realizada</span></td></tr>
+                            </tbody>
+                        </table>
+                    </section>
+                </main>
+            </div>
+            <div class="ea-restart-row">
+                <button class="demo-btn secondary" onclick="eaGoTo('ea-login')">Reiniciar demo</button>
+            </div>
+        </div>
+    </div>
+
+    <p class="demo-caption">Esta es una simulación con datos de ejemplo, no el sistema real ni datos de ningún cliente.</p>
+</div>
+
+<style>
+    .demo-wrapper { max-width: 900px; margin: 2rem auto; font-family: inherit; }
+    .demo-back { display: inline-block; margin-bottom: 1rem; text-decoration: none; font-weight: 600; }
+    .demo-frame { border: 1px solid rgba(0,0,0,0.15); border-radius: 12px; overflow: hidden; box-shadow: 0 8px 24px rgba(0,0,0,0.12); }
+    .demo-toolbar { display: flex; align-items: center; gap: 6px; padding: 10px 14px; background: #2b2b33; }
+    .demo-toolbar .dot { width: 10px; height: 10px; border-radius: 50%; }
+    .dot.red { background: #ff5f56; } .dot.yellow { background: #ffbd2e; } .dot.green { background: #27c93f; }
+    .demo-title { margin-left: 10px; color: #cfcfd6; font-size: 0.8rem; }
+    .demo-btn { padding: 10px 16px; border: none; border-radius: 8px; background: #C08A3E; color: #fff; font-weight: 600; cursor: pointer; }
+    .demo-btn.secondary { background: #6b7280; }
+    .demo-caption { text-align: center; font-size: 0.8rem; opacity: 0.65; margin-top: 10px; }
+    .ea-screen.hidden { display: none; }
+
+    /* Login screen */
+    #ea-login { background: linear-gradient(180deg, rgb(5,39,103) 0%, #3a0647 100%); min-height: 460px; display: flex; align-items: center; justify-content: center; }
+    .ea-login-card { background: #fff; border-radius: 10px; padding: 28px 32px; width: 300px; display: flex; flex-direction: column; gap: 8px; }
+    .ea-login-brand { display: flex; align-items: center; gap: 10px; margin-bottom: 12px; }
+    .ea-login-brand h1 { font-size: 1.2rem; margin: 0; }
+    .ea-plaque { width: 34px; height: 34px; border: 2px solid #C08A3E; color: #C08A3E; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-weight: 700; }
+    .ea-plaque.small { width: 26px; height: 26px; font-size: 0.85rem; border-color: #C08A3E; color: #C08A3E; background: rgba(192,138,62,0.15); }
+    .ea-login-card input { padding: 8px 10px; border-radius: 6px; border: 1px solid #d5d5dd; margin-bottom: 6px; }
+    .ea-login-card .demo-btn { margin-top: 8px; }
+
+    /* App shell */
+    .ea-app-shell { display: flex; min-height: 460px; }
+    .ea-sidebar { width: 220px; flex-shrink: 0; background: linear-gradient(180deg, rgb(5,39,103) 0%, #3a0647 70%); color: #fff; display: flex; flex-direction: column; }
+    .ea-brand-row { display: flex; align-items: center; gap: 8px; padding: 14px; font-weight: 700; border-bottom: 1px solid rgba(255,255,255,0.15); }
+    .ea-nav { flex: 1; padding: 10px 0; overflow-y: auto; }
+    .ea-nav-group { padding: 10px 16px 4px; font-size: 0.75rem; text-transform: uppercase; opacity: 0.6; letter-spacing: 0.05em; }
+    .ea-nav-item { padding: 8px 16px; cursor: pointer; font-size: 0.9rem; }
+    .ea-nav-item.sub { padding-left: 24px; opacity: 0.9; }
+    .ea-nav-item:hover, .ea-nav-item.active { background: rgba(255,255,255,0.12); }
+    .ea-user-footer { display: flex; align-items: center; gap: 8px; padding: 12px 14px; border-top: 1px solid rgba(255,255,255,0.15); font-size: 0.8rem; }
+    .ea-avatar { width: 28px; height: 28px; border-radius: 50%; background: #C08A3E; display: flex; align-items: center; justify-content: center; font-size: 0.75rem; font-weight: 700; }
+    .ea-content { flex: 1; background: #f7f7fb; padding: 20px; overflow-y: auto; }
+    .ea-panel.hidden { display: none; }
+    .ea-muted { color: #666; margin-top: -8px; }
+    .ea-cards { display: flex; gap: 14px; flex-wrap: wrap; margin: 16px 0 22px; }
+    .ea-card { background: #fff; border-radius: 10px; padding: 14px 18px; min-width: 160px; box-shadow: 0 2px 8px rgba(0,0,0,0.06); }
+    .ea-card-label { font-size: 0.75rem; color: #777; }
+    .ea-card-value { font-size: 1.4rem; font-weight: 700; margin-top: 4px; }
+    .ea-card-sub { font-size: 0.8rem; color: #999; }
+    .ea-table { width: 100%; border-collapse: collapse; font-size: 0.9rem; background: #fff; border-radius: 8px; overflow: hidden; }
+    .ea-table th, .ea-table td { text-align: left; padding: 8px 10px; border-bottom: 1px solid #eee; }
+    .ea-table th { background: #efeff5; font-size: 0.8rem; }
+    .badge { padding: 2px 8px; border-radius: 20px; font-size: 0.75rem; }
+    .badge.pending { background: #fff3cd; color: #856404; }
+    .badge.ok { background: #d1e7dd; color: #0f5132; }
+    .badge.overdue { background: #f8d7da; color: #842029; }
+    .ea-restart-row { text-align: right; padding: 10px 20px; background: #efeff5; }
+
+    @@media (max-width: 640px) {
+        .ea-app-shell { flex-direction: column; }
+        .ea-sidebar { width: 100%; }
+    }
+</style>
+
+<script>
+    function eaGoTo(screenId) {
+        document.querySelectorAll('.ea-screen').forEach(s => s.classList.add('hidden'));
+        document.getElementById(screenId).classList.remove('hidden');
+    }
+    function eaShowContent(panelKey, navEl) {
+        document.querySelectorAll('.ea-panel').forEach(p => p.classList.add('hidden'));
+        document.getElementById('ea-' + panelKey).classList.remove('hidden');
+        document.querySelectorAll('.ea-nav-item').forEach(n => n.classList.remove('active'));
+        navEl.classList.add('active');
+    }
+</script>
