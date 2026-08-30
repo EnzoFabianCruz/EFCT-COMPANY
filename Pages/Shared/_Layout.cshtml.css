@@ -52,10 +52,15 @@ button.accept-policy {
 }
 
 footer.footer {
-    background-color: #1a1a2e; /* o el tono oscuro que uses en tu circuito */
-    color: rgba(255, 255, 255, 0.75);
+    background-color: rgba(10, 10, 20, 0.75);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    color: rgba(255, 255, 255, 0.8);
     padding: 1.5rem 0;
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    border-top: 1px solid rgba(255, 255, 255, 0.15);
+    position: relative;
+    z-index: 1;
+    width: 100%;
 }
 
     footer.footer a {
@@ -64,22 +69,10 @@ footer.footer {
     }
 
         footer.footer a:hover {
-            color: #4dd0e1; /* un acento tipo "circuito" azul/cian, ajusta a tu paleta */
+            color: #4dd0e1;
             text-decoration: underline;
         }
-footer.footer {
-    background-color: rgba(10, 10, 20, 0.7);
-    backdrop-filter: blur(4px);
-    color: rgba(255, 255, 255, 0.8);
-    padding: 0.75rem 0;
-    border-top: 1px solid rgba(255, 255, 255, 0.15);
-    position: relative;
-    z-index: 1; /* para que quede sobre el .circuit-bg que tiene z-index:-1 */
-}
 
-    footer.footer a {
-        color: #ffffff;
-    }
 h6.footertext{
     color: aliceblue
 }

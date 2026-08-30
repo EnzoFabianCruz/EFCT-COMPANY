@@ -11,15 +11,14 @@
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
 }
 
-.servicio-card h2 {
-    font-size: 1.25rem; /* antes 1.4rem */
-}
+    .servicio-card h2 {
+        font-size: 1.25rem;
+    }
 
 .servicio-icon {
-    width: 40px; /* antes 48px */
+    width: 40px;
     height: 40px;
 }
-
 
 .servicio-card h3 {
     color: #ffffff;
@@ -31,6 +30,7 @@
 .servicio-card small {
     color: #d8e6f5;
 }
+
 .servicios-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -43,15 +43,6 @@
     margin: 0 auto;
     padding: 0 1rem;
 }
-.servicio-card:nth-child(1) .nivel-wrapper {
-    display: flex;
-    gap: 1rem;
-}
-
-.servicio-card:nth-child(1) .nivel-box {
-    flex: 1;
-}
-
 
 .servicio-card:nth-child(1) {
     grid-area: desarrollo;
@@ -67,4 +58,123 @@
 
 .servicio-card:nth-child(4) {
     grid-area: hardware;
+}
+
+/* Lista con check en vez de bullets */
+.check-list {
+    list-style: none;
+    padding-left: 0;
+    margin: 1rem 0;
+}
+
+    .check-list li {
+        position: relative;
+        padding-left: 1.6rem;
+        margin-bottom: 0.5rem;
+    }
+
+        .check-list li::before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: #85B7EB;
+            font-weight: bold;
+        }
+
+/* Acordeón de niveles (tarjeta 1) */
+.accordion {
+    margin: 1rem 0;
+}
+
+.accordion-item {
+    background-color: rgba(255, 255, 255, 0.06);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 8px;
+    margin-bottom: 0.5rem;
+    overflow: hidden;
+}
+
+.accordion-button {
+    background-color: transparent;
+    color: #ffffff;
+    font-weight: 500;
+    box-shadow: none;
+}
+
+    .accordion-button:not(.collapsed) {
+        background-color: rgba(133, 183, 235, 0.15);
+        color: #ffffff;
+    }
+
+    .accordion-button::after {
+        filter: invert(1);
+    }
+
+    .accordion-button:focus {
+        box-shadow: none;
+        border-color: rgba(255, 255, 255, 0.2);
+    }
+
+.accordion-body {
+    color: #d8e6f5;
+    font-size: 0.9rem;
+}
+
+/* Stepper de proceso (tarjeta 1) */
+.proceso-steps {
+    display: flex;
+    justify-content: space-between;
+    gap: 0.5rem;
+    margin: 1.5rem 0 1rem;
+    flex-wrap: wrap;
+}
+
+.step {
+    text-align: center;
+    flex: 1;
+    min-width: 70px;
+}
+
+.step-num {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    background: rgba(133, 183, 235, 0.25);
+    border: 1px solid rgba(133, 183, 235, 0.6);
+    color: #ffffff;
+    font-weight: bold;
+    margin-bottom: 0.4rem;
+}
+
+.step p {
+    font-size: 0.75rem;
+    margin: 0;
+    color: #d8e6f5;
+}
+
+/* Nota con tooltip (tarjeta 1) */
+.nota-tip {
+    font-size: 0.85rem;
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    margin-top: 0.5rem;
+}
+
+.info-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.15);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    font-size: 0.7rem;
+    cursor: help;
+    color: #ffffff;
+    flex-shrink: 0;
 }

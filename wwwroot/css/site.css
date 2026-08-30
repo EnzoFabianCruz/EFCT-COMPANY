@@ -10,8 +10,9 @@
 }
 
 html {
-  position: relative;
-  min-height: 100%;
+    overscroll-behavior: none;
+    position: relative;
+    min-height: 100%;
 }
 
 
@@ -182,4 +183,18 @@ footer.footer {
     .fade-in-scroll.visible {
         opacity: 1;
         transform: translateY(0);
+    }
+.SobreMi-imagen {
+    flex: 0 0 260px;
+    display: flex;
+    justify-content: center;
+}
+
+    .SobreMi-imagen img {
+        width: 100%;
+        max-width: 260px;
+        height: auto;
+        border-radius: 12px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        display: block;
     }

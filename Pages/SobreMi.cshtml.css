@@ -8,6 +8,9 @@
     margin-bottom: 1.5rem;
     text-align: left;
     box-shadow: 0 4px 30px rgba(0, 0, 0, 0.2);
+    display: flex;
+    align-items: center;
+    gap: 2rem;
 }
 
     .SobreMi-card h2 {
@@ -17,3 +20,35 @@
     .SobreMi-card p {
         color: #d8e6f5;
     }
+
+.SobreMi-texto {
+    flex: 1 1 60%;
+    min-width: 0;
+}
+
+.SobreMi-imagen {
+    flex: 0 0 260px;
+    display: flex;
+    justify-content: center;
+}
+
+    .SobreMi-imagen img {
+        width: 100%;
+        max-width: 260px;
+        height: auto;
+        border-radius: 12px;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+        display: block;
+    }
+
+/* Responsive: apilar en pantallas pequeñas */
+@media (max-width: 768px) {
+    .SobreMi-card {
+        flex-direction: unset;
+    }
+
+    .SobreMi-imagen {
+        flex: 0 0 auto;
+        max-width: 220px;
+    }
+}

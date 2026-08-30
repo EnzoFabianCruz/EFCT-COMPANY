@@ -26,3 +26,32 @@
             .index-hero p a:hover {
                 color: #ffffff;
             }
+    /* Label de marca EFCT Company */
+    .index-hero .text-muted {
+        color: #85B7EB !important;
+        font-weight: 600;
+        opacity: 0.9;
+    }
+
+    /* Botones outline (LinkedIn / GitHub) sobre fondo oscuro */
+    .index-hero .btn-outline-primary {
+        color: #85B7EB;
+        border-color: #85B7EB;
+    }
+
+        .index-hero .btn-outline-primary:hover {
+            background-color: #85B7EB;
+            color: #12263f; /* un tono oscuro que combine con tu fondo, ajusta si quieres */
+        }
+
+    .index-hero .btn-outline-dark,
+    .index-hero .btn-outline-light {
+        color: #ffffff;
+        border-color: rgba(255, 255, 255, 0.6);
+    }
+
+        .index-hero .btn-outline-dark:hover,
+        .index-hero .btn-outline-light:hover {
+            background-color: #ffffff;
+            color: #12263f;
+        }

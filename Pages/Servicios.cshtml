@@ -16,27 +16,48 @@
         </div>
         <h2>Desarrollo de sistemas a Medida</h2>
         <p>No siempre hace falta empezar con lo más complejo. Te ayudo a elegir el nivel que tu negocio necesita hoy.</p>
-        <div class="nivel-wrapper">
-            <div class="nivel-box">
-                <h3>Nivel 1: Organización Simple</h3>
-                <p>Ordeno tu Excel y lo conecto a paneles visuales: ventas, productos top, tendencias.</p>
-                <p><sub>Ideal para pocos usuarios · listo en días</sub></p>
+
+        <div class="accordion" id="nivelesAccordion">
+            <div class="accordion-item">
+                <h3 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#nivel1">
+                        Nivel 1: Organización Simple
+                    </button>
+                </h3>
+                <div id="nivel1" class="accordion-collapse collapse" data-bs-parent="#nivelesAccordion">
+                    <div class="accordion-body">
+                        Ordeno tu Excel y lo conecto a paneles visuales: ventas, productos top, tendencias.
+                        <br><sub>Ideal para pocos usuarios · listo en días</sub>
+                    </div>
+                </div>
             </div>
-            <div class="nivel-box">
-                <h3>Nivel 2: Sistema Completo</h3>
-                <p>Base de datos real: control de usuarios, registro y almacenamiento seguro.</p>
-                <p><sub>Ideal para varios usuarios · por etapas</sub></p>
+            <div class="accordion-item">
+                <h3 class="accordion-header">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#nivel2">
+                        Nivel 2: Sistema Completo
+                    </button>
+                </h3>
+                <div id="nivel2" class="accordion-collapse collapse" data-bs-parent="#nivelesAccordion">
+                    <div class="accordion-body">
+                        Base de datos real: control de usuarios, registro y almacenamiento seguro.
+                        <br><sub>Ideal para varios usuarios · por etapas</sub>
+                    </div>
+                </div>
             </div>
         </div>
-        <p>Ambos niveles se trabajan de la siguiente forma:</p>
-        <ul class="check-list">
-            <li>Conversamos sobre lo que necesitas</li>
-            <li>Avances reales cada 1-2 semanas</li>
-            <li>Revisamos juntos cada etapa</li>
-            <li>Ajustamos según tus prioridades</li>
-            <li>Entrega final y soporte</li>
-        </ul>
-        <p><small>¿No sabes qué nivel necesitas? Lo evaluamos juntos en la primera conversación. Siempre puedes escalar del Nivel 1 al 2 sin perder lo avanzado.</small></p>
+
+        <div class="proceso-steps">
+            <div class="step"><span class="step-num">1</span><p>Conversamos</p></div>
+            <div class="step"><span class="step-num">2</span><p>Avances c/1-2 sem.</p></div>
+            <div class="step"><span class="step-num">3</span><p>Revisamos juntos</p></div>
+            <div class="step"><span class="step-num">4</span><p>Ajustamos</p></div>
+            <div class="step"><span class="step-num">5</span><p>Entrega y soporte</p></div>
+        </div>
+
+        <p class="nota-tip">
+            <span class="info-icon" data-bs-toggle="tooltip" title="Lo evaluamos juntos en la primera conversación. Siempre puedes escalar del Nivel 1 al 2 sin perder lo avanzado.">?</span>
+            ¿No sabes qué nivel necesitas?
+        </p>
     </div>
 
     <div class="servicio-card glass-card fade-in-scroll">
@@ -50,11 +71,11 @@
         <ul class="check-list">
             <li>Instalación y actualización de Windows</li>
             <li>Activación de Office y otras aplicaciones</li>
-            <li>Soporte ante fallas de bases de datos (recuperación cuando algo deja de funcionar)</li>
+            <li>Soporte ante fallas de bases de datos</li>
             <li>Solución de problemas y configuraciones generales</li>
             <li>Soporte de correo, impresoras y redes básicas</li>
         </ul>
-        <p><small>Ideal si tu equipo o sistema falla, o necesitas configurar algo nuevo sin tener a quién llamar. Atención remota o presencial según urgencia.</small></p>
+        <p><small>Atención remota o presencial según urgencia.</small></p>
     </div>
 
     <div class="servicio-card glass-card fade-in-scroll">
@@ -65,12 +86,12 @@
             </svg>
         </div>
         <h2>Automatización de Procesos</h2>
-        <p>Ideal si pasas tiempo copiando o revisando información a mano, o repites la misma tarea seguido.</p>
+        <p>Ideal si pasas tiempo copiando o revisando información a mano.</p>
         <ul class="check-list">
-            <li>Carga y organización automática de datos desde Excel, TXT o CSV</li>
-            <li>Validación de información para evitar errores manuales</li>
-            <li>Generación de reportes automáticos</li>
-            <li>Integración de datos entre distintas fuentes</li>
+            <li>Carga automática desde Excel, TXT o CSV</li>
+            <li>Validación de información</li>
+            <li>Reportes automáticos</li>
+            <li>Integración entre distintas fuentes</li>
         </ul>
     </div>
 
@@ -81,13 +102,18 @@
                 <path d="M8 20h8M10 16v4M14 16v4" stroke-linecap="round" />
             </svg>
         </div>
-        <h2>Consultoría de Hardware y Actualización de Equipos</h2>
+        <h2>Consultoría de Hardware</h2>
         <ul class="check-list">
-            <li>Evaluación de tu equipo actual: rendimiento y limitaciones</li>
-            <li>Recomendación de componentes para mejorar el rendimiento</li>
-            <li>Orientación entre actualizar o comprar equipo nuevo</li>
-            <li>Mantenimiento básico: limpieza, conexiones, diagnóstico simple</li>
+            <li>Evaluación de rendimiento y limitaciones</li>
+            <li>Recomendación de componentes</li>
+            <li>Orientación: actualizar o comprar</li>
+            <li>Mantenimiento básico y diagnóstico</li>
         </ul>
-        <p><small>Nota: no realizo reparaciones a nivel de placa o circuito, pero sí te oriento en componentes reemplazables y la mejor decisión para tu equipo.</small></p>
+        <p><small>No realizo reparaciones a nivel de placa, pero sí te oriento en la mejor decisión.</small></p>
     </div>
 </div>
+
+<script>
+    var tooltipList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+        .map(function(el) { return new bootstrap.Tooltip(el); });
+</script>
