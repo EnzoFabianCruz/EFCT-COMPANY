@@ -52,3 +52,32 @@
         max-width: 220px;
     }
 }
+@media (max-width: 768px) {
+    .SobreMi-card {
+        flex-direction: column;
+        gap: 1.5rem;
+        padding: 1.5rem;
+    }
+
+    .SobreMi-texto {
+        flex: 1 1 auto;
+        width: 100%;
+    }
+
+    .SobreMi-imagen {
+        flex: 0 0 auto;
+        width: 100%;
+        max-width: 100%;
+    }
+
+        .SobreMi-imagen img {
+            max-width: 280px;
+            width: 100%;
+        }
+}
+
+@media (max-width: 480px) {
+    .SobreMi-imagen img {
+        max-width: 200px;
+    }
+}

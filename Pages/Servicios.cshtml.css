@@ -178,3 +178,27 @@
     color: #ffffff;
     flex-shrink: 0;
 }
+@media (max-width: 768px) {
+    .servicios-grid {
+        grid-template-columns: 1fr;
+        grid-template-areas:
+            "desarrollo"
+            "soporte"
+            "automatizacion"
+            "hardware";
+    }
+}
+
+@media (max-width: 480px) {
+    .servicio-card {
+        padding: 1.25rem 1rem;
+    }
+
+    .proceso-steps {
+        justify-content: flex-start;
+    }
+
+    .step {
+        min-width: 60px;
+    }
+}
