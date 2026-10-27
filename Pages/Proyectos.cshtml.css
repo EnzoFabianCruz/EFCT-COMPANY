@@ -254,6 +254,15 @@
         background: #c49fff;
     }
 
+/* Preview: Operaciones de transporte */
+.mini-transporte {
+    background: #f5f6f8;
+}
+
+.mp-sidebar-mini.navy {
+    background: #1f3a5f;
+}
+
 /* Placeholder para proyectos sin demo */
 .mini-window.placeholder {
     display: flex;

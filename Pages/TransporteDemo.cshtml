@@ -1,0 +1,325 @@
+@page
+@model ProyectoEmprendimiento_paginaweb.Pages.TransporteDemoModel
+@{
+    ViewData["Title"] = "Demo: Partes de Trabajo y Parada";
+}
+
+<div class="demo-wrapper">
+    <a href="/Proyectos" class="demo-back">&larr; Volver a proyectos</a>
+
+    <div class="demo-frame">
+        <div class="demo-toolbar">
+            <span class="dot red"></span>
+            <span class="dot yellow"></span>
+            <span class="dot green"></span>
+            <span class="demo-title">Vista de demostración — datos de ejemplo</span>
+        </div>
+
+        <!-- LOGIN -->
+        <div class="tp-screen" id="tp-login">
+            <div class="tp-login-card">
+                <div class="tp-logo">Operaciones Transporte</div>
+                <label>Usuario</label>
+                <input type="text" value="operador.demo" readonly />
+                <label>Contraseña</label>
+                <input type="password" value="••••••••" readonly />
+                <button class="demo-btn" onclick="tpGoTo('tp-app')">Ingresar</button>
+                <a class="tp-forgot" href="javascript:void(0)">¿Olvidaste tu contraseña?</a>
+            </div>
+        </div>
+
+        <!-- APP -->
+        <div class="tp-screen hidden" id="tp-app">
+            <div class="tp-shell">
+                <aside class="tp-sidebar">
+                    <h4>Operaciones</h4>
+                    <hr />
+                    <div class="tp-nav active" data-panel="partes" onclick="tpShowPanel('partes', this)">🚛 Partes de trabajo</div>
+                    <div class="tp-nav" data-panel="paradas" onclick="tpShowPanel('paradas', this)">⏸ Paradas</div>
+                    <div class="tp-nav" data-panel="usuarios" onclick="tpShowPanel('usuarios', this)">👥 Usuarios</div>
+                    <hr />
+                    <div class="tp-nav" onclick="tpGoTo('tp-login')">🚪 Salir</div>
+                    <div class="tp-sidebar-footer">
+                        <div class="tp-user">operador.demo</div>
+                        <div class="tp-role">Rol: Admin</div>
+                    </div>
+                </aside>
+
+                <main class="tp-content">
+                    <div class="tp-toast hidden" id="tp-toast"></div>
+
+                    <!-- PARTES -->
+                    <section class="tp-panel" id="tp-partes">
+                        <h2>Partes de trabajo</h2>
+                        <div class="tp-toolbar">
+                            <input type="text" id="tp-buscar-partes" placeholder="Buscar por N° parte, unidad, operador, turno..." oninput="tpRenderPartes()" />
+                            <button class="demo-btn small" onclick="tpOpenNuevoParte()">+ Nuevo parte</button>
+                            <button class="demo-btn small danger" id="tp-btn-anular" disabled onclick="tpAnularParte()">Anular</button>
+                        </div>
+                        <div class="tp-table-wrap">
+                            <table class="tp-table">
+                                <thead><tr><th>N° Parte</th><th>Fecha</th><th>Unidad</th><th>Turno</th><th>Operador</th><th>Estado</th></tr></thead>
+                                <tbody id="tp-partes-body"></tbody>
+                            </table>
+                        </div>
+                        <p class="tp-hint">Haz clic en una fila para ver el detalle, o selecciónala para anularla.</p>
+                    </section>
+
+                    <!-- PARADAS -->
+                    <section class="tp-panel hidden" id="tp-paradas">
+                        <h2>Paradas</h2>
+                        <div class="tp-table-wrap">
+                            <table class="tp-table">
+                                <thead><tr><th>N° Parada</th><th>N° Parte</th><th>Fecha</th><th>Unidad</th><th>Turno</th><th>Operador</th><th>Estado</th></tr></thead>
+                                <tbody id="tp-paradas-body"></tbody>
+                            </table>
+                        </div>
+                        <p class="tp-hint">Haz clic en una parada para ver sus motivos.</p>
+                    </section>
+
+                    <!-- USUARIOS -->
+                    <section class="tp-panel hidden" id="tp-usuarios">
+                        <h2>Usuarios</h2>
+                        <div class="tp-table-wrap">
+                            <table class="tp-table">
+                                <thead><tr><th>Usuario</th><th>Nombre</th><th>Rol</th><th>Estado</th></tr></thead>
+                                <tbody>
+                                    <tr><td>admin.demo</td><td>Rosa Medina</td><td>Admin</td><td><span class="badge ok">Activo</span></td></tr>
+                                    <tr><td>operador.demo</td><td>Luis Paredes</td><td>Usuario</td><td><span class="badge ok">Activo</span></td></tr>
+                                    <tr><td>supervisor.demo</td><td>Jorge Salas</td><td>Usuario</td><td><span class="badge ok">Activo</span></td></tr>
+                                    <tr><td>exoperador.demo</td><td>Mario Vega</td><td>Usuario</td><td><span class="badge off">Inactivo</span></td></tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <p class="tp-hint">Solo el rol Admin puede crear y administrar usuarios.</p>
+                    </section>
+                </main>
+            </div>
+            <div class="tp-restart"><button class="demo-btn secondary small" onclick="tpReset()">Reiniciar demo</button></div>
+        </div>
+    </div>
+
+    <!-- MODAL -->
+    <div class="tp-modal-overlay hidden" id="tp-modal" onclick="if(event.target===this)tpCloseModal()">
+        <div class="tp-modal">
+            <div class="tp-modal-header"><span id="tp-modal-title"></span><span class="tp-modal-close" onclick="tpCloseModal()">✕</span></div>
+            <div class="tp-modal-body" id="tp-modal-body"></div>
+            <div class="tp-modal-footer" id="tp-modal-footer"></div>
+        </div>
+    </div>
+
+    <p class="demo-caption">Esta es una simulación con datos de ejemplo, no el sistema real ni datos de ningún cliente.</p>
+</div>
+
+<style>
+    .demo-wrapper { max-width: 960px; margin: 2rem auto; font-family: "Segoe UI", inherit; }
+    .demo-back { display: inline-block; margin-bottom: 1rem; text-decoration: none; font-weight: 600; }
+    .demo-frame { border: 1px solid rgba(0,0,0,0.15); border-radius: 12px; overflow: hidden; box-shadow: 0 8px 24px rgba(0,0,0,0.12); }
+    .demo-toolbar { display: flex; align-items: center; gap: 6px; padding: 10px 14px; background: #2b2b33; }
+    .demo-toolbar .dot { width: 10px; height: 10px; border-radius: 50%; }
+    .dot.red { background: #ff5f56; } .dot.yellow { background: #ffbd2e; } .dot.green { background: #27c93f; }
+    .demo-title { margin-left: 10px; color: #cfcfd6; font-size: 0.8rem; }
+    .demo-btn { padding: 10px 16px; border: none; border-radius: 8px; background: #1f3a5f; color: #fff; font-weight: 600; cursor: pointer; }
+    .demo-btn:hover { background: #16304f; }
+    .demo-btn:disabled { opacity: .45; cursor: not-allowed; }
+    .demo-btn.secondary { background: #6b7280; }
+    .demo-btn.danger { background: #b42318; }
+    .demo-btn.small { padding: 6px 12px; font-size: 0.85rem; }
+    .demo-caption { text-align: center; font-size: 0.8rem; opacity: 0.65; margin-top: 10px; }
+    .hidden { display: none !important; }
+
+    #tp-login { background: #f5f6f8; min-height: 480px; display: flex; align-items: center; justify-content: center; }
+    .tp-login-card { background: #fff; border-radius: 10px; padding: 28px 32px; width: 310px; display: flex; flex-direction: column; gap: 8px; box-shadow: 0 4px 16px rgba(0,0,0,0.08); }
+    .tp-logo { font-size: 1.25rem; font-weight: 700; color: #1f3a5f; text-align: center; margin-bottom: 10px; }
+    .tp-login-card input { padding: 8px 10px; border-radius: 6px; border: 1px solid #d5d5dd; margin-bottom: 6px; }
+    .tp-forgot { text-align: center; font-size: 0.8rem; margin-top: 6px; color: #1f3a5f; }
+
+    .tp-shell { display: flex; min-height: 480px; }
+    .tp-sidebar { width: 210px; flex-shrink: 0; background: #1f3a5f; color: #fff; padding: 18px 0; display: flex; flex-direction: column; }
+    .tp-sidebar h4 { text-align: center; margin: 0 0 12px; }
+    .tp-sidebar hr { border-color: rgba(255,255,255,0.25); width: 85%; margin: 10px auto; }
+    .tp-nav { padding: 10px 20px; cursor: pointer; font-size: 0.9rem; border-left: 3px solid transparent; }
+    .tp-nav:hover { background: #2a4a75; }
+    .tp-nav.active { background: #2a4a75; border-left-color: #c2760c; }
+    .tp-sidebar-footer { margin-top: auto; padding: 12px 20px; border-top: 1px solid rgba(255,255,255,0.15); font-size: 0.75rem; }
+    .tp-content { flex: 1; min-width: 0; background: #f5f6f8; padding: 20px; position: relative; }
+    .tp-content h2 { font-size: 1.25rem; color: #1a2233; margin-bottom: 14px; }
+    .tp-toolbar { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 12px; }
+    .tp-toolbar input { flex: 1; min-width: 200px; padding: 6px 10px; border-radius: 6px; border: 1px solid #d5d5dd; font-size: .85rem; }
+    .tp-table-wrap { overflow-x: auto; border-radius: 8px; background: #fff; box-shadow: 0 1px 2px rgba(16,24,40,.06); }
+    .tp-table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
+    .tp-table th, .tp-table td { text-align: left; padding: 8px 10px; border-bottom: 1px solid #eee; white-space: nowrap; }
+    .tp-table th { background: #e9eef4; color: #1f3a5f; }
+    .tp-table tbody tr { cursor: pointer; }
+    .tp-table tbody tr:hover { background: #f3f6fa; }
+    .tp-table tbody tr.sel { background: #fbf1e2; }
+    .tp-hint { font-size: .78rem; opacity: .65; margin-top: 8px; }
+    .badge { padding: 2px 8px; border-radius: 20px; font-size: 0.75rem; }
+    .badge.ok { background: #e7f6ef; color: #067647; }
+    .badge.off, .badge.anulado { background: #fbeceb; color: #b42318; }
+    .tp-toast { background: #e7f6ef; color: #067647; padding: 8px 12px; border-radius: 8px; font-size: 0.85rem; margin-bottom: 10px; }
+    .tp-restart { text-align: right; padding: 10px 20px; background: #e9edf3; }
+
+    .tp-modal-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.45); display: flex; align-items: center; justify-content: center; z-index: 2000; }
+    .tp-modal { background: #fff; border-radius: 10px; width: 94%; max-width: 640px; max-height: 88vh; overflow-y: auto; }
+    .tp-modal-header { background: #1f3a5f; color: #fff; padding: 12px 16px; display: flex; justify-content: space-between; border-radius: 10px 10px 0 0; font-weight: 600; }
+    .tp-modal-close { cursor: pointer; }
+    .tp-modal-body { padding: 16px; }
+    .tp-modal-footer { padding: 10px 16px; border-top: 1px solid #eee; display: flex; justify-content: flex-end; gap: 8px; }
+    .tp-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 10px; margin-bottom: 14px; }
+    .tp-field label { display: block; font-size: .75rem; color: #66707f; margin-bottom: 2px; }
+    .tp-field input, .tp-field select { width: 100%; padding: 6px 8px; border-radius: 6px; border: 1px solid #d5d5dd; font-size: .85rem; background: #fff; }
+    .tp-field .val { font-size: .9rem; font-weight: 600; }
+    .tp-modal h5 { font-size: .9rem; color: #1f3a5f; margin: 6px 0; }
+
+    @@media (max-width: 640px) {
+        .tp-shell { flex-direction: column; }
+        .tp-sidebar { width: 100%; padding: 10px 0; }
+        .tp-sidebar-footer { display: none; }
+    }
+</style>
+
+<script>
+    const tpOperadores = ["Luis Paredes", "Carlos Rojas", "Diego Quispe", "Mario Vega"];
+    const tpUnidades = ["VOL-01", "VOL-02", "CAM-07", "CAM-12"];
+    const tpDetalleBase = [
+        { material: "Desmonte", ciclo: "Cantera → Botadero", origen: "Cantera A", destino: "Botadero 2", viajes: 14, horas: 5.5, peso: 308 },
+        { material: "Mineral", ciclo: "Frente 3 → Chancadora", origen: "Frente 3", destino: "Chancadora", viajes: 9, horas: 3.0, peso: 198 }
+    ];
+    const tpMotivos = {
+        1: [{ hi: "09:10", hf: "09:40", motivo: "Cambio de turno", obs: "Relevo en campo" }, { hi: "13:00", hf: "13:45", motivo: "Refrigerio", obs: "" }],
+        2: [{ hi: "10:20", hf: "11:50", motivo: "Falla mecánica", obs: "Revisión de mangueras hidráulicas" }],
+        3: [{ hi: "08:00", hf: "08:25", motivo: "Abastecimiento de combustible", obs: "" }]
+    };
+    const tpPartesInicial = [
+        { n: "P-0004", fecha: "26/10/2026", unidad: "VOL-02", turno: "Día", operador: "Carlos Rojas", anulado: false, detalle: tpDetalleBase },
+        { n: "P-0003", fecha: "26/10/2026", unidad: "VOL-01", turno: "Noche", operador: "Luis Paredes", anulado: false, detalle: tpDetalleBase },
+        { n: "P-0002", fecha: "25/10/2026", unidad: "CAM-07", turno: "Día", operador: "Diego Quispe", anulado: false, detalle: tpDetalleBase },
+        { n: "P-0001", fecha: "24/10/2026", unidad: "CAM-12", turno: "Noche", operador: "Mario Vega", anulado: true, detalle: tpDetalleBase }
+    ];
+    const tpParadas = [
+        { n: "PD-0003", parte: "P-0004", fecha: "26/10/2026", unidad: "VOL-02", turno: "Día", operador: "Carlos Rojas", id: 3 },
+        { n: "PD-0002", parte: "P-0003", fecha: "26/10/2026", unidad: "VOL-01", turno: "Noche", operador: "Luis Paredes", id: 2 },
+        { n: "PD-0001", parte: "P-0002", fecha: "25/10/2026", unidad: "CAM-07", turno: "Día", operador: "Diego Quispe", id: 1 }
+    ];
+    let tpPartes = JSON.parse(JSON.stringify(tpPartesInicial));
+    let tpSeleccion = null;
+
+    function tpGoTo(id) {
+        document.querySelectorAll('.tp-screen').forEach(s => s.classList.add('hidden'));
+        document.getElementById(id).classList.remove('hidden');
+    }
+    function tpShowPanel(name, el) {
+        document.querySelectorAll('.tp-panel').forEach(p => p.classList.add('hidden'));
+        document.getElementById('tp-' + name).classList.remove('hidden');
+        document.querySelectorAll('.tp-nav').forEach(n => n.classList.remove('active'));
+        if (el) el.classList.add('active');
+    }
+    function tpToast(msg) {
+        const t = document.getElementById('tp-toast');
+        t.textContent = '✔ ' + msg; t.classList.remove('hidden');
+        setTimeout(() => t.classList.add('hidden'), 2800);
+    }
+    function tpBadge(anulado) {
+        return anulado ? '<span class="badge anulado">Anulado</span>' : '<span class="badge ok">Registrado</span>';
+    }
+    function tpRenderPartes() {
+        const q = document.getElementById('tp-buscar-partes').value.toLowerCase();
+        const body = document.getElementById('tp-partes-body');
+        body.innerHTML = '';
+        tpPartes.filter(p => [p.n, p.unidad, p.operador, p.turno].join(' ').toLowerCase().includes(q)).forEach(p => {
+            const tr = document.createElement('tr');
+            if (tpSeleccion === p.n) tr.className = 'sel';
+            tr.innerHTML = `<td>${p.n}</td><td>${p.fecha}</td><td>${p.unidad}</td><td>${p.turno}</td><td>${p.operador}</td><td>${tpBadge(p.anulado)}</td>`;
+            tr.onclick = () => { tpSeleccion = p.n; document.getElementById('tp-btn-anular').disabled = p.anulado; tpRenderPartes(); tpOpenDetalleParte(p); };
+            body.appendChild(tr);
+        });
+    }
+    function tpRenderParadas() {
+        const body = document.getElementById('tp-paradas-body');
+        body.innerHTML = '';
+        tpParadas.forEach(p => {
+            const tr = document.createElement('tr');
+            tr.innerHTML = `<td>${p.n}</td><td>${p.parte}</td><td>${p.fecha}</td><td>${p.unidad}</td><td>${p.turno}</td><td>${p.operador}</td><td>${tpBadge(false)}</td>`;
+            tr.onclick = () => tpOpenParada(p);
+            body.appendChild(tr);
+        });
+    }
+    function tpOpenModal(title, bodyHtml, footerHtml) {
+        document.getElementById('tp-modal-title').textContent = title;
+        document.getElementById('tp-modal-body').innerHTML = bodyHtml;
+        document.getElementById('tp-modal-footer').innerHTML = footerHtml;
+        document.getElementById('tp-modal').classList.remove('hidden');
+    }
+    function tpCloseModal() { document.getElementById('tp-modal').classList.add('hidden'); }
+    const tpCloseBtn = '<button class="demo-btn secondary small" onclick="tpCloseModal()">Cerrar</button>';
+
+    function tpOpenDetalleParte(p) {
+        const rows = p.detalle.map((d, i) => `<tr><td>${i + 1}</td><td>${d.material}</td><td>${d.ciclo}</td><td>${d.origen}</td><td>${d.destino}</td><td>${d.viajes}</td><td>${d.horas}</td><td>${d.peso} t</td></tr>`).join('');
+        const totalPeso = p.detalle.reduce((a, d) => a + d.peso, 0);
+        tpOpenModal('Parte ' + p.n, `
+            <div class="tp-grid">
+                <div class="tp-field"><label>Fecha</label><div class="val">${p.fecha}</div></div>
+                <div class="tp-field"><label>Turno</label><div class="val">${p.turno}</div></div>
+                <div class="tp-field"><label>Operador</label><div class="val">${p.operador}</div></div>
+                <div class="tp-field"><label>Unidad</label><div class="val">${p.unidad}</div></div>
+                <div class="tp-field"><label>Estado</label><div class="val">${tpBadge(p.anulado)}</div></div>
+            </div>
+            <h5>Detalle de ciclos</h5>
+            <div class="tp-table-wrap"><table class="tp-table"><thead><tr><th>#</th><th>Material</th><th>Ciclo</th><th>Origen</th><th>Destino</th><th>Viajes</th><th>Horas</th><th>Peso</th></tr></thead><tbody>${rows}</tbody></table></div>
+            <p class="tp-hint">Peso total transportado: <b>${totalPeso} t</b></p>`, tpCloseBtn);
+    }
+    function tpOpenParada(p) {
+        const rows = tpMotivos[p.id].map((m, i) => `<tr><td>${i + 1}</td><td>${m.hi}</td><td>${m.hf}</td><td>${m.motivo}</td><td>${m.obs || '—'}</td></tr>`).join('');
+        tpOpenModal('Parada ' + p.n, `
+            <div class="tp-grid">
+                <div class="tp-field"><label>N° Parte</label><div class="val">${p.parte}</div></div>
+                <div class="tp-field"><label>Fecha</label><div class="val">${p.fecha}</div></div>
+                <div class="tp-field"><label>Unidad</label><div class="val">${p.unidad}</div></div>
+                <div class="tp-field"><label>Operador</label><div class="val">${p.operador}</div></div>
+            </div>
+            <h5>Motivos de parada</h5>
+            <div class="tp-table-wrap"><table class="tp-table"><thead><tr><th>#</th><th>Hora inicial</th><th>Hora final</th><th>Motivo</th><th>Observación</th></tr></thead><tbody>${rows}</tbody></table></div>`, tpCloseBtn);
+    }
+    function tpOpenNuevoParte() {
+        const num = 'P-' + String(tpPartes.length + 1).padStart(4, '0');
+        const opts = a => a.map(x => `<option>${x}</option>`).join('');
+        tpOpenModal('Nuevo parte de trabajo', `
+            <div class="tp-grid">
+                <div class="tp-field"><label>N° Parte</label><input id="np-n" value="${num}" readonly /></div>
+                <div class="tp-field"><label>Fecha</label><input id="np-fecha" value="27/10/2026" readonly /></div>
+                <div class="tp-field"><label>Turno</label><select id="np-turno"><option>Día</option><option>Noche</option></select></div>
+                <div class="tp-field"><label>Operador</label><select id="np-op">${opts(tpOperadores)}</select></div>
+                <div class="tp-field"><label>Unidad</label><select id="np-un">${opts(tpUnidades)}</select></div>
+                <div class="tp-field"><label>Horómetro inicial</label><input value="12450" readonly /></div>
+                <div class="tp-field"><label>Horómetro final</label><input value="12458" readonly /></div>
+                <div class="tp-field"><label>Combustible (gal)</label><input value="38" readonly /></div>
+            </div>
+            <h5>Detalle de ciclos (ejemplo)</h5>
+            <p class="tp-hint">En el sistema real aquí se cargan material, ciclo, origen, destino, viajes y peso por cada fila.</p>`,
+            '<button class="demo-btn secondary small" onclick="tpCloseModal()">Cancelar</button><button class="demo-btn small" onclick="tpGuardarParte()">Guardar parte</button>');
+    }
+    function tpGuardarParte() {
+        tpPartes.unshift({
+            n: document.getElementById('np-n').value, fecha: document.getElementById('np-fecha').value,
+            unidad: document.getElementById('np-un').value, turno: document.getElementById('np-turno').value,
+            operador: document.getElementById('np-op').value, anulado: false, detalle: tpDetalleBase
+        });
+        tpCloseModal(); tpSeleccion = null; document.getElementById('tp-btn-anular').disabled = true;
+        tpRenderPartes(); tpToast('Parte registrado correctamente');
+    }
+    function tpAnularParte() {
+        const p = tpPartes.find(x => x.n === tpSeleccion);
+        if (!p) return;
+        p.anulado = true; document.getElementById('tp-btn-anular').disabled = true;
+        tpRenderPartes(); tpToast('Parte ' + p.n + ' anulado');
+    }
+    function tpReset() {
+        tpPartes = JSON.parse(JSON.stringify(tpPartesInicial)); tpSeleccion = null;
+        document.getElementById('tp-buscar-partes').value = '';
+        document.getElementById('tp-btn-anular').disabled = true;
+        tpRenderPartes(); tpShowPanel('partes', document.querySelector('.tp-nav[data-panel="partes"]'));
+        tpGoTo('tp-login');
+    }
+    tpRenderPartes(); tpRenderParadas();
+</script>
